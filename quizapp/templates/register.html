@@ -8,8 +8,8 @@
 
     <form action="" method = "POST">
         {% csrf_token %}
-          {{ form.as_p }}
-{% comment %} {{ profile_form.as_p }} {% endcomment %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
   <button type="submit">Register</button>
 
 

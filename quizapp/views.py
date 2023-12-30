@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, ProfileForm
 # Create your views here.
 
 def login_user(request):
@@ -35,16 +35,21 @@ def homepage(request):
 def register_user(request):
 
     if request.method == "POST":
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password1']
+        user_form = RegisterUserForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            email = user_form.cleaned_data['email']
+            password = user_form.cleaned_data['password1']
             user = authenticate(email=email, password=password)
             login(request, user)
             messages.success(request, ("Registrations Successfull"))
             return redirect('home')
     else:
-        form = RegisterUserForm()
+        user_form = RegisterUserForm()
+        profile_form = ProfileForm()
 
-    return render(request, 'register.html', {'form' : form})
+    return render(request, 'register.html', {'user_form': user_form, 'profile_form': profile_form})

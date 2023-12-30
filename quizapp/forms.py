@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth import get_user_model
+from .models import Profile
 
 User = get_user_model()
 
@@ -19,3 +20,13 @@ class RegisterUserForm(UserCreationForm):
 
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('civil_status', 'occupation', 'place_of_residence', 'cellphone', 'level_of_school',)
+        widgets = {
+            'civil_status': forms.Select(choices=Profile.CIVIL_STATUS_CHOICES),
+            'level_of_school': forms.Select(choices=Profile.SCHOOL_LEVEL_CHOICES),
+        }
