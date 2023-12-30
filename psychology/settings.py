@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'psychology.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quiz',
+        'NAME': 'db_quizapp',
         'USER': 'root',
         'PASSWORD': 'test',
         'HOST': 'localhost',  # Or your MySQL host

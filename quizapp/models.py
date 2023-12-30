@@ -15,7 +15,7 @@ class Profile(models.Model):
     civil_status = models.CharField(max_length=20, choices=CIVIL_STATUS_CHOICES)
     occupation = models.CharField(max_length=100)
     place_of_residence = models.CharField(max_length=400)
-    cellphone = models.CharField(max_length=20)
+    cellphone = models.BigIntegerField()
     SCHOOL_LEVEL_CHOICES = [
         ('elementary', 'Elementary/junior school'),
         ('high_school', 'High School'),
