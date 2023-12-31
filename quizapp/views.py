@@ -27,11 +27,6 @@ def logout_user(request):
 
     return redirect('home')
 
-@login_required
-def homepage(request):
-
-    return render(request, 'home.html', {})
-
 def register_user(request):
 
     if request.method == "POST":
@@ -53,3 +48,19 @@ def register_user(request):
         profile_form = ProfileForm()
 
     return render(request, 'register.html', {'user_form': user_form, 'profile_form': profile_form})
+
+def home_page(request):
+
+    return render(request, 'home.html', {})
+
+def about_page(request):
+
+    return render(request, 'about.html', {})
+
+def faq_page(request):
+
+    return render(request, 'faq.html', {})
+
+def forms_page(request):
+
+    return render(request, 'forms.html', {})
