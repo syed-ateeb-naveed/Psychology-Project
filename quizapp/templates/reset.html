@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<h1> Reset password </h1>
+
+<br/><br/>
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Enter email</label>
+            <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" value = "submit" class="btn btn-primary">Send reset mail</button>
+        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Back to login</a>
+
+    </form>
+
+{% endblock %}
