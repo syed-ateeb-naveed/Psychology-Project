@@ -1,45 +1,69 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
+  <div class="container-fluid">
+   
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'image.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+      Bootstrap
+    </a>
 
-          {%if user.is_authenticated%}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-          {% else %}  
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Create an account</a>
-          </li>
-          {% endif %}
-          
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'about' %}">How does it work?</a>
-          </li>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}"
+            >Home</a
+          >
+        </li>
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'faq' %}">FAQ</a>
-          </li>
+        {%if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">login_Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Create an account</a>
+        </li>
+        {% endif %}
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'forms' %}">Forms</a>
-          </li>
-          
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'about' %}"
+            >¿Cómo te sientes hoy?</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'faq' %}"
+            >FAQ- </a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'forms' %}"
+            >Form_Formatos para psicólogos</a
+          >
+        </li>
+      </ul>
+    
     </div>
-  </nav>
+  </div>
+</nav>
