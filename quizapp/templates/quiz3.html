@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    .pink {
+    background-color: #AA336A;
+    color: white;
+
+}
+
+.pink:hover{
+    background-color: blue;
+    color: white;
+}
+
+
+
+</style>
+<body>
+    {% load static %}
+<nav class="navbar navbar-expand-lg ">
+  <div class="container-fluid">
+   
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'image.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+
+        {%if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">login_Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Create an account</a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'about' %}"
+            >¿Cómo te sientes hoy?</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'faq' %}"
+            >FAQ- </a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'forms' %}"
+            >Form_Formatos para psicólogos</a
+          >
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>
+    <h1 class="text-center" id="uppertext1">Test de Orientación Vocacional</h1>
+    <div class="container">
+            <div class="col-12" id="uppertext2" >
+                <p>Categorías e Ítems del IIVP.
+                </p>
+                <p>No te preocupes, nadie puede ver tus resultados, así que
+                    siéntete con la libertad de responder con sinceridad.
+                    Comenzamos.
+                </p>
+            </div>
+
+            <br>
+            <br>
+    <form method="post" action="{% url 'process_response' %}" id="quizForm">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question " id="question{{ forloop.counter }}" {% if forloop.first %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                <p>{{ forloop.counter }}: {{ question.text }}</p>
+                {% if question.parts %}
+                <ul>
+                {% for part in question.parts %}
+                    <li>{{ part.text }}</li>
+                    {% for choice in choices %}
+                    <label><input type="radio" name="choice_{{ part.id }}" value="{{ choice.id }}" data-points="{{ choice.points }}">{{ choice.text }}</label><br>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+                {% endif %}
+                
+                <br>
+            </div>
+            
+        {% endfor %}
+        <div class="d-flex justify-content-center">
+
+        <button type="button" onclick="nextQuestion()" class="btn pink text-center" id="nxtques" style="display: block;" >Siguiente </button>
+        <button type="button" onclick="calculatePoints()" class="btn pink text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"id="btnsubmit" style="display: none;">Terminar test</button>
+        </div>
+       
+    
+        <input type="hidden" name="c1" id="c1" value=""> 
+        <input type="hidden" name="c2" id="c2" value=""> 
+        <input type="hidden" name="c3" id="c3" value=""> 
+        <input type="hidden" name="c4" id="c4" value=""> 
+        <input type="hidden" name="c5" id="c5" value=""> 
+        <input type="hidden" name="c6" id="c6" value=""> 
+        <input type="hidden" name="c7" id="c7" value=""> 
+
+        <input type="hidden" name="category_id" id="category_id" value="{{ category_id }}"> 
+
+    </form>
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Disclaimer </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <b>!Muchas gracias por tomarte el tiempo de responder el test! </b>
+                <p>
+                    Enseguida te mostramos tus resultados. Es importante mencionar que esta herramienta debe utilizarse como una guía inicial para la exploración de intereses, y no como un diagnóstico definitivo de aptitudes o preferencias vocacionales. Es recomendable consultar con un orientador vocacional o un psicólogo especializado para una evaluación más detallada y personalizada.
+                </p>
+            </div>
+            <div class="modal-footer d-grid gap-2 mx-auto ">
+              <button type="button" onclick="submitForm()" class="btn pink">Vamos a mis resultados</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <script>
+        let currentQuestion = 1;
+        function showQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).style.display = 'block';
+        }
+
+        function hideQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).style.display = 'none';
+            
+        }
+
+        function nextQuestion() {
+            document.getElementById(`uppertext1`).style.display = 'none';
+            document.getElementById(`uppertext2`).style.display = 'none';
+
+            hideQuestion(currentQuestion);
+            currentQuestion++;
+
+            if (currentQuestion <  document.querySelectorAll('[id^="question"]').length) {
+                showQuestion(currentQuestion);
+            } else if (currentQuestion ==  document.querySelectorAll('[id^="question"]').length) {
+                // All questions have been answered, you can handle this scenario.
+                showQuestion(currentQuestion);
+                document.getElementById('nxtques').style.display = 'none';
+                document.getElementById('btnsubmit').style.display = 'block';
+
+            }
+        }
+
+        function calculatePoints() {
+        var questions = document.querySelectorAll('[name^="choice_"]');
+        var totalPoints = 0;
+        for (var i = 1; i < questions.length; i+=4) {
+            var selectedChoice = document.querySelector('[name="' + questions[i].name + '"]:checked');
+            if (selectedChoice) {
+                totalPoints += parseInt(selectedChoice.getAttribute('data-points'));
+            }
+            console.log(i)
+            if(i===9){
+                document.getElementById('c1').value = totalPoints;
+                totalPoints=0;
+            }
+            else if (i === 21) {
+                document.getElementById('c2').value = totalPoints;
+                totalPoints=0;            }
+            else if(i===33){
+                document.getElementById('c3').value = totalPoints;
+                totalPoints=0;            }
+            else if(i===45){
+                document.getElementById('c4').value = totalPoints;
+                totalPoints=0;            }
+            else if(i===57){
+                document.getElementById('c5').value = totalPoints;
+                totalPoints=0;            }
+            else if(i===69){
+                document.getElementById('c6').value = totalPoints;
+                totalPoints=0;            }
+            else if(i===81){
+                document.getElementById('c7').value = totalPoints;
+                totalPoints=0;            }
+ 
+
+        }
+        document.getElementById('resultPoints').innerText = 'Result Points: ' + totalPoints;;
+            
+        
+    }
+
+        function submitForm() {
+            // Perform any additional logic before submitting the form if needed
+            document.getElementById('quizForm').submit();
+        }
+    </script>
+</body>
+</html>
