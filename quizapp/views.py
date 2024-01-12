@@ -6,8 +6,12 @@ from .models import Category, Question, Choice,QuizResult,Questionwithparts,Part
 from django.http import HttpResponse
 from .forms import RegisterUserForm, ProfileForm
 from django.db.models import Prefetch
+from googleapiclient.discovery import build
+from django.http import JsonResponse
 
 # Create your views here.
+api_key = 'AIzaSyDtqvCUJJhv6N7DBJrXI7lyzwjsCYPCiy4'
+youtube = build('youtube', 'v3', developerKey=api_key)
 
 def login_user(request):
 
@@ -207,3 +211,29 @@ def process_response(request):
     return HttpResponse('This view only accepts POST requests.')
 def chatbot(request):
     return render(request, 'chatbot.html')
+
+def get_videos(request):
+    channel_id = 'UCpeW5jO3i-jf_9I6SyitoOA'
+# Extracted from the provided YouTube channel link
+    latest_video_response = youtube.search().list(
+        part='id',
+        channelId=channel_id,
+        order='date',
+        type='video',
+        maxResults=1
+    ).execute()
+
+    video_id = latest_video_response['items'][0]['id']['videoId']
+    most_viewed_video_response = youtube.search().list(
+        part='id',
+        channelId=channel_id,
+        order='viewCount',
+        type='video',
+        maxResults=1
+    ).execute()
+
+    video_id2 = most_viewed_video_response['items'][0]['id']['videoId']
+    videos=[video_id,video_id2]
+    videos = {'latest_video': video_id, 'most_viewed_video': video_id2}
+
+    return JsonResponse(videos)

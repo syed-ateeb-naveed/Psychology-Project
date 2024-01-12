@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import quiz_view, process_response,chatbot
+from .views import quiz_view, process_response,chatbot,get_videos
 
 urlpatterns = [
     path('auth/login', views.login_user, name='login'),
@@ -12,7 +12,8 @@ urlpatterns = [
     path('forms/', views.forms_page, name='forms'),
     path('quiz/<int:category_id>', quiz_view, name='quiz_view'),
     path('quiz/process_response', process_response, name='process_response'),
-    path('chatbot', views.chatbot, name='quiz_results'),
+    path('chatbot/', views.chatbot, name='quiz_results'),
+    path('footer/',views.get_videos,name='footer')
 
 
 ]
