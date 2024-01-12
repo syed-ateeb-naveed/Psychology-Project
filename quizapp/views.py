@@ -74,21 +74,6 @@ def forms_page(request):
     return render(request, 'forms.html', {})
 def quiz_view(request, category_id):
 
-    # score = {
-    #     1 : {
-    #         "A" : 4,
-    #         "B" : 3
-    #     },
-    #     2 : {
-    #         "A" : 4,
-    #         "B" : 3
-    #     }
-    # }
-
-    # questions = Question.objects.filter(category_id=category_id)
-    # choices=Choice.objects.filter(category_id=category_id)
-
-    # return render(request, 'quiz.html', {'questions': questions,"choices":choices,"category_id":category_id ,"score":score[category_id]})
     if category_id==1 or category_id==2 :
         questions = Question.objects.filter(category_id=category_id)
         choices=Choice.objects.filter(category_id=category_id)
@@ -107,12 +92,6 @@ def quiz_view(request, category_id):
         choices=Choice.objects.filter(category_id=category_id)
         return render(request, 'quiz3.html', {'questions': questions,"choices":choices,"category_id":category_id})
 
-       
-    
-
-
-
-# Create your views here.
 def process_response(request):
     if request.method == 'POST':
         total_points = int(request.POST.get('total_points', 0))
@@ -197,13 +176,12 @@ def process_response(request):
             print(cat1,cat2)
             return HttpResponse(f'Mental Status: {cat1} second_max_value: {cat2} ')
             
-        # quiz_result = QuizResult(username=username,mental_status=mental_status)
-        # quiz_result.save()
-        # if request.user.is_authenticated:
-        # # Access the user's ID
-        #     user_id = request.user.id
-        #     quiz_result = QuizResult(id=user_id,mental_status=mental_status,Category=category_id,date='2021-10-10')
-        #     quiz_result.save()
+
+        if request.user.is_authenticated:
+        # Access the user's ID
+            user_id = request.user.id
+            quiz_result = QuizResult(id=user_id,mental_status=mental_status,Category=category_id,date='2021-10-10')
+            quiz_result.save()
         return HttpResponse(f'Mental Status: {mental_status} ')
     
 

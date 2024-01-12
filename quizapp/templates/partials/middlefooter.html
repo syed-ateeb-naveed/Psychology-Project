@@ -1,3 +1,4 @@
+{% load static %}
 <style>
     /* Styling for the footer */
     .middlefooter {
@@ -13,10 +14,24 @@
       text-decoration: none;
     }
 
+    @media (min-width: 561px) and (max-width: 775px) {
+        #vid2 {
+            display: none;
+        }
+        .col-md-5{
+            text-align: center!important;
+        }
 
-    .col-sm {
-        margin-bottom: 10px; /* Adjust the margin-bottom as needed */
     }
+
+    /* Hide the entire footer on smaller screens */
+    @media (max-width: 560px) {
+        .middlefooter {
+            display: none;
+        }
+    }
+
+
 </style>
 
 <footer class="middlefooter p-2 my-2 ">
@@ -25,21 +40,22 @@
     </div>
  
     <div class="row">
-      <div class="col-sm" id="vid1" >
+      <div class="col-md-6 text-left" id="vid1" >
         
       </div>
   
-      <div class="col-sm" id="vid2" >
+      <div class="col-md-6 text-left" id="vid2" >
         
       </div>
+    </div>
 
       <script>
         // Fetch video data using AJAX
         fetch('footer/')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('vid1').innerHTML = `<iframe width="360" height="215" src="https://www.youtube.com/embed/${data.latest_video}" ></iframe>`;
-                document.getElementById('vid2').innerHTML = `<iframe width="360" height="215" src="https://www.youtube.com/embed/${data.most_viewed_video}" ></iframe>`;
+                document.getElementById('vid1').innerHTML = `<iframe width="300" height="215" src="https://www.youtube.com/embed/${data.latest_video}" ></iframe>`;
+                document.getElementById('vid2').innerHTML = `<iframe width="300" height="215" src="https://www.youtube.com/embed/${data.most_viewed_video}" ></iframe>`;
             })
             .catch(error => console.error('Errorssss:', error));
     </script>

@@ -14,6 +14,4 @@ urlpatterns = [
     path('quiz/process_response', process_response, name='process_response'),
     path('chatbot/', views.chatbot, name='quiz_results'),
     path('footer/',views.get_videos,name='footer')
-
-
 ]
