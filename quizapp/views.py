@@ -5,18 +5,15 @@ from django.contrib import messages
 from .models import Category, Question, Choice,QuizResult,Questionwithparts,Partsofquestion
 from django.http import HttpResponse
 from .forms import RegisterUserForm, ProfileForm
-<<<<<<< HEAD
 from django.db.models import Prefetch
 from googleapiclient.discovery import build
 from django.http import JsonResponse
 
-=======
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
->>>>>>> 03a69cf968c9a525f6ff8e01b76b65a39302f69b
 # Create your views here.
 api_key = 'AIzaSyDtqvCUJJhv6N7DBJrXI7lyzwjsCYPCiy4'
 youtube = build('youtube', 'v3', developerKey=api_key)
