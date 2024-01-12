@@ -88,6 +88,62 @@ def faq_page(request):
 
     return render(request, 'faq.html', {})
 
-def forms_page(request):
+
+def oriention(request):
+
+    return render(request, 'oriention.html', {})
+
+
+def about_us(request):
+
+    return render(request, 'about_us.html', {})
+def anxiety(request):
+
+    return render(request, 'anxiety.html', {})
+def autostima(request):
+
+    return render(request, 'autostima.html', {})
+def contact_us(request):
+
+    return render(request, 'contact_us.html', {})
+def depression(request):
+
+    return render(request, 'depression.html', {})
+def enduser(request):
+
+    return render(request, 'enduser.html', {})
+def faq(request):
+
+    return render(request, 'faq.html', {})
+def forms(request):
 
     return render(request, 'forms.html', {})
+def function(request):
+
+    return render(request, 'function.html', {})
+def generate_new_password(request):
+
+    return render(request, 'generate_new_password.html', {})
+def how_do_you_feel(request):
+
+    return render(request, 'how_do_you_feel.html', {})
+def privacy_policy(request):
+
+    return render(request, 'privacy_policy.html', {})
+def result_anxiety(request):
+
+    return render(request, 'result_anxiety.html', {})
+def result_depression(request):
+
+    return render(request, 'result_depression.html', {})
+def result_oriention(request):
+
+    return render(request, 'result_oriention.html', {})
+
+def result_autostima(request):
+
+    return render(request, 'result_autostima.html', {})
+
+def  termscondition(request):
+
+    return render(request, 'terms_&_condition.html', {})

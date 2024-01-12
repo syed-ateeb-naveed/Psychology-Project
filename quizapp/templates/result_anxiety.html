@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+    <div class="text-center my-2"><h2>Resultados del test de Ansiedad</h2></div>
+    <div class="container">
+      <div class="row flex flex-wrap-reverse">
+        <div
+          class="col-sm align-content-center justify-content-center text-center"
+        >
+          <p class="m-3">
+            samplye hai result show hoga Depresión mínima o nula: Una puntuación
+            en este rango sugiere que la persona presenta muy pocos o ningún
+            síntoma de depresión significativo. Esto puede interpretarse como
+            una indicación de que actualmente no se está experimentando
+            depresión clínica.
+          </p>
+          <button class="btn pink my-2 px-2 py-1 btn-danger" type="submit">
+            ¿Chatear con MiConsejeroBot?
+          </button>
+          <br />
+          <button class="btn pink border border-dark" type="submit">
+            ¿Cómo funciona?
+          </button>
+        </div>
+
+        <div class="col-sm my-2 text-center align-content-center justify-content-center">
+          <img
+            height="450px"
+            width="300px"
+            src="https://plus.unsplash.com/premium_photo-1669047670905-fa4331d07e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="img-fluid"
+            alt="Responsive image"
+          />
+        </div>
+
+      </div>
+    </div>
+<div class='py-5'>
+    <div class="row text-center align-content-center">
+     
+      <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=V1Bv1I4HsGs">
+      </iframe>
+      </div>
+   
+      </div>
+      <div class="row text-center align-content-center my-2">
+        <div class="col-sm">
+          <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=IQFlb97IIik">
+          </iframe>
+          
+        </div>
+        <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=a1td6mA3nVA">
+        </iframe>
+        </div>
+     
+        </div>
+     
+      </div>
+    
+   
+    {% endblock %}

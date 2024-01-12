@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% block content %}
+{% load static %}
 
-{%block content%}
 
 <h1> Entrar a mi cuenta </h1>
 
@@ -9,6 +10,68 @@
     <form action="" method = "POST">
         {% csrf_token %}
 
+
+
+        <div class="container text-center align-items-center">
+            <div class="row">
+              <div class="col-sm m-3">
+                <h2 class="my-5">
+                    Entrar a mi cuenta
+                </h2>
+              </div class='m-1'>
+    
+              <label  class="form-label "><h5>		Correo electrónico</h5> </label>
+              <div> <input class="" placeholder="tucorreo@web.xxx"/>
+              </div>
+            </div class='m-1'>
+    
+            <label  class="form-label "><h5>Contraseña:</h5> </label>
+            <div> <input class="" placeholder="  Tu contraseña"/>
+            </div>
+           
+              <button class="btn m-3 btn-danger" type="submit">Entrar</button>
+              <div>
+                <button class="btn btn" style="color:white;background-color:  gray" type="submit">Olvidé mi contraseña</button>
+           
+              </div>
+              <p class="my-2">¿Aún no estás registrado(a)?</p> icon
+                <div>
+                <button class="btn m-3 btn-primary" type="submit">Registrarme</button>
+                
+              <button class="btn m-3 btn-primary" type="submit">Iniciar sesión con Google</button>
+            </div>
+              </div>
+             
+            </div>
+                
+    
+            </div>
+          
+              
+            </div>
+          </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Correo electrónico.</label>
             <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
@@ -20,7 +83,7 @@
         </div>
         <button type="submit" value = "submit" class="btn btn-danger">Entrar</button>
         <p>Aún no estás registrado? </p>
-        <button type="submit" value = "submit" class="btn btn-primary">Crear cuenta.</button>
+        <button type="submit" value = "submit" class="btn btn-primary">Crear cuenta.</button> {% endcomment %}
         {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'passwordReset' %}">Forgot password?</a> {% endcomment %}
 
 

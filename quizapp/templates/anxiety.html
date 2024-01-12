@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+    <div class="text-center my-2"><h2>Test de Ansiedad</h2></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm my-4 round text-center align-content-center justify-content-center">
+                <img
+                height="400px"
+                width="350px"
+                style='border-radius:25px'
+                  src="{% static 'anxiety.jpg' %}"
+                  class="img-fluid"
+                  alt="Responsive image"
+                />
+              </div>
+
+          <div class="col-sm">
+            <h2 class="m-1">
+                Escala de Evaluación de Ansiedad General (EEAG)
+            </h2>
+            <p class="m-3">
+                La EEAG es una herramienta de autoevaluación diseñada para medir la frecuencia y severidad de los síntomas relacionados con la ansiedad durante la última semana.
+            </p>
+            
+          </div>
+      
+          
+        </div>
+      </div>
+      <div class="container my-3">
+            <h5>Instrucciones:
+            </h5>
+          <div class="">
+           <p>Por favor, indica en qué medida has experimentado los siguientes síntomas en la última semana, incluyendo hoy. Utiliza la siguiente escala para cada ítem:</p>
+           <ul>
+            <li>No lo experimenté en absoluto</li>
+            <li>Lo experimenté de manera leve o infrecuente
+                
+                </li>
+            <li>Lo experimenté de manera moderada u ocasional</li>
+            <li>Lo experimenté de manera severa o frecuente</li>
+          </ul>  
+          <div class="text-center align-content-center">
+            <button class="btn pink my-4 " 
+            style='background-color: pink ; '
+            type="submit">Comenzar test</button>
+          </div>
+        
+        </div>
+        </div>
+
+
+        <div class='py-5'>
+          <div class="row text-center align-content-center">
+           
+            <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=V1Bv1I4HsGs">
+            </iframe>
+            </div>
+         
+            </div>
+            <div class="row text-center align-content-center my-2">
+              <div class="col-sm">
+                <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=IQFlb97IIik">
+                </iframe>
+              </div>
+              <div class="col-sm">
+              <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=a1td6mA3nVA">
+              </iframe>
+              </div>
+           
+              </div>
+           
+            </div>
+          
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

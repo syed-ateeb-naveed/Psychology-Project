@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+    <div class="text-center align-items-center">
+      <h2 class="my-5">
+        Mi Cuenta
+    </h2>
+    </div>
+<div>
+    <div class=" text-center py-5"  >
+        <div class="jumbotron  jumbotron-image  shadow text-center justify-content-center align-content-center" style=
+          "background-image: url({% static 'enduser.JPG' %});
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height:130vh;"
+        >
+          
+          <p class="">
+            sa los resultados de tus tests anteriores. Una vez que hayas tomado un test, puedes volver a tomarlo después de 5 meses.
+          </p>
+          <h4 class="mb-4 ">
+            ¿Cómo te sientes hoy?
+          </h4>
+          <p>Toma un test para averiguarlo:</p>
+          <div class="d-flex mx-5 flex-column text-center justify-content-center align-content-center">
+           
+            <div>
+              <a class="btn btn-danger my-2 " 
+              style="{color:;} :hover { color: red; }"
+              href="#" role="button"
+                >Ansiedad</a
+              >
+            </div>
+            <div>
+              <a class="btn btn-danger my-2 " href="#" role="button"
+                >Depresión</a
+              >
+            </div>
+            <div>
+              <a class="btn btn-danger my-2 " href="#" role="button"
+                >Autoestima</a
+              >
+            </div>
+            <div>
+              <a class="btn btn-primary my-2 mx-1" href="#" role="button"
+                >Orientación Vocacional.</a
+              >
+            </div>
+         
+        </div>
+      </div>
+</div>
+    
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
