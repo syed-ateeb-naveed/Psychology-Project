@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+    <h3> Crear una nueva contraseña: </h3>
+<br/><br/>
+
+    <form method="POST">
+
+        {% csrf_token %}
+        {% comment %} {{form}} {% endcomment %}
+
+
+            {{ form }}
+            <input type="Submit" name="Update Password">
+        </form>
+{% endblock %}
