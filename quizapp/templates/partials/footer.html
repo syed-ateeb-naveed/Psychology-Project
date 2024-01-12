@@ -1,9 +1,9 @@
 <style>
     /* Styling for the footer */
     .footer {
-      background-color: green;
+      background-color: #69B761  ;
       color: white;
-      padding: 20px;
+     
       text-align: center;
     }
     
@@ -11,15 +11,26 @@
     .footer a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
     }
+
+
+
 </style>
 
-<footer class="footer">
-    <p>This is the footer content.</p>
-    <p>
-      <a href="{% url 'home'%}">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </p>
+<footer class="footer p-5 my-5 ">
+ 
+    <div class="row">
+      <div class="col-sm">
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">Contáctanos.</a></p>
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">Quiénes Somos.</a></p>
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">Términos y Condiciones.</a></p>
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">Privacy Policy</a></p>
+      </div>
+  
+      <div class="col-sm">
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">FAQ.</a></p>
+        <p><a class="  link-secondary link-opacity-50-hover text-white" href="#">Versión en inglés (Proximamente).</a></p>
+        
+      </div>
+
 </footer>

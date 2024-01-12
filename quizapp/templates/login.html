@@ -2,22 +2,26 @@
 
 {%block content%}
 
-<h1> Login </h1>
+<h1> Entrar a mi cuenta </h1>
 
 <br/><br/>
 
     <form action="" method = "POST">
         {% csrf_token %}
+
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <label for="exampleInputEmail1" class="form-label">Correo electrónico.</label>
             <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
             <input type="password" class="form-control" name="password">
         </div>
-        <button type="submit" value = "submit" class="btn btn-primary">Submit</button>
+        <button type="submit" value = "submit" class="btn btn-danger">Entrar</button>
+        <p>Aún no estás registrado? </p>
+        <button type="submit" value = "submit" class="btn btn-primary">Crear cuenta.</button>
+        {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'passwordReset' %}">Forgot password?</a> {% endcomment %}
 
 
     </form>

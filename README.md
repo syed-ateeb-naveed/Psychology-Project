@@ -1,5 +1,3 @@
 # Psychology-Project
 
-HIIII
-
-aasd
+Project under Development

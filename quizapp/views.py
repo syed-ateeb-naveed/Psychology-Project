@@ -1,14 +1,22 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Category, Question, Choice,QuizResult,Questionwithparts,Partsofquestion
 from django.http import HttpResponse
 from .forms import RegisterUserForm, ProfileForm
+<<<<<<< HEAD
 from django.db.models import Prefetch
 from googleapiclient.discovery import build
 from django.http import JsonResponse
 
+=======
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+>>>>>>> 03a69cf968c9a525f6ff8e01b76b65a39302f69b
 # Create your views here.
 api_key = 'AIzaSyDtqvCUJJhv6N7DBJrXI7lyzwjsCYPCiy4'
 youtube = build('youtube', 'v3', developerKey=api_key)
@@ -34,6 +42,28 @@ def logout_user(request):
     messages.success(request, ("You were logged out"))
 
     return redirect('home')
+
+def reset_password(request):
+    if request.method == "POST":
+        message = "Hi"
+        email = request.POST['email']
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(request, "Email does not exist.")
+            return redirect('passwordReset')
+        subject = "OTP for Password Reset"
+        send_mail(
+            subject,
+            message,
+            "Ateeb <ateebnaveed1996@gmail.com>",
+            [email],
+            fail_silently=False
+        )
+
+        messages.success(request, ("Email sent successfully !"))
+
+    return render(request, 'reset.html', {})
 
 def register_user(request):
 
