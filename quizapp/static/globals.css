@@ -1,17 +1,25 @@
 .pink {
-    background-color: #AA336A;
+    background-color: #c22a71;
+    color: white;
 
 }
 
 .pink:hover{
-    background-color: blue;
+    color: white;
+    background-color: rgb(48, 48, 203);
+}
+
+.blue {
+    background-color: lightblue;
+    color:white;
 }
 
 .blue:hover{
+
     background-color: green;
 }
 
-body{
+.ww{
     text-align: justify;
   text-justify: inter-word;
 }

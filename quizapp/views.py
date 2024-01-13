@@ -155,7 +155,7 @@ def result_autostima(request):
 
 def  termscondition(request):
 
-    return render(request, 'terms_&_condition.html', {})
+    return render(request, 'terms_&_conditions.html', {})
 def quiz_view(request, category_id):
 
     if category_id==1 or category_id==2 :

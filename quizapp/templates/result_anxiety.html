@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-
-    <div class="text-center my-2"><h2>Resultados del test de Ansiedad</h2></div>
+{% comment %} <iframe width="928" height="522" src="https://www.youtube.com/embed/V1Bv1I4HsGs" title="4 Técnicas para Controlar la ANSIEDAD. Cómo disminuir la ansiedad?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> {% endcomment %}
+{% comment %} <iframe width="928" height="522" src="https://www.youtube.com/embed/IQFlb97IIik" title="6 Ways to Stop an Anxiety Crisis☺️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>     {% endcomment %}
+{% comment %} <iframe width="928" height="522" src="https://www.youtube.com/embed/a1td6mA3nVA" title="What is anxiety? Examples and Types of Anxiety" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> {% endcomment %}
+<div class="text-center my-2"><h2>Resultados del test de Ansiedad</h2></div>
     <div class="container">
       <div class="row flex flex-wrap-reverse">
         <div
@@ -15,7 +17,7 @@
             ¿Chatear con MiConsejeroBot?
           </button></a>
           <br />
-          <a href="/function"><button class="btn pink border border-dark" type="submit" href="#">
+          <a href="/function"><button class="btn  border border-dark" type="submit" href="#">
             ¿Cómo funciona?
           </button></a>
         </div>
@@ -24,7 +26,7 @@
           <img
             height="450px"
             width="300px"
-            src="https://plus.unsplash.com/premium_photo-1669047670905-fa4331d07e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="{% static 'result_anxiety.png' %}" 
             class="img-fluid"
             alt="Responsive image"
           />
@@ -35,18 +37,18 @@
 <div class='py-5'>
     <div class="row text-center align-content-center">
      
-      <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=V1Bv1I4HsGs">
+      <div class="col-sm"><iframe style='border-radius:30px;' src='https://www.youtube.com/embed/V1Bv1I4HsGs' width="400" height="225" src="">
       </iframe>
       </div>
    
       </div>
       <div class="row text-center align-content-center my-2">
         <div class="col-sm">
-          <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=IQFlb97IIik">
+          <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/IQFlb97IIik">
           </iframe>
           
         </div>
-        <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/watch?v=a1td6mA3nVA">
+        <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/a1td6mA3nVA">
         </iframe>
         </div>
      

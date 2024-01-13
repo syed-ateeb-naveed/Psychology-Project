@@ -3,9 +3,7 @@
 {% load static %}
 
 
-<h1> Entrar a mi cuenta </h1>
 
-<br/><br/>
 
     <form action="" method = "POST">
         {% csrf_token %}
@@ -25,20 +23,21 @@
               </div>
 
             </div class='m-1'>
-            <label  class="form-label "><h5>Contraseña:</h5> </label>
+            <label  class="form-label m-1 "><h5>Contraseña:</h5> </label>
             <div> <input type="password" name="password" placeholder="Tu contraseña"/>
             </div>
            
-              <button class="btn m-3 btn-danger" type="submit">Entrar</button>
+              <button class="btn m-3 pink text-white" type="submit">Entrar</button>
               <div>
-                <button class="btn btn" style="color:white;background-color:  gray" type="submit">Olvidé mi contraseña</button>
+                <button class="btn btn" href='/reset_password' style="color:white;background-color:  gray" type="submit">Olvidé mi contraseña</button>
            
               </div>
-              <p class="my-2">¿Aún no estás registrado(a)?</p> icon
+              <p class="my-2">¿Aún no estás registrado(a)?</p> 
+
                 <div>
-                <button class="btn m-3 btn-primary" type="submit">Registrarme</button>
+                <button class="btn m-3 blue" href='/auth/register' type="submit">Registrarme</button>
                 
-              <button class="btn m-3 btn-primary" type="submit">Iniciar sesión con Google</button>
+              <button class="btn m-3 blue" href='' type="submit">Iniciar sesión con Google</button>
             </div>
               </div>
              
