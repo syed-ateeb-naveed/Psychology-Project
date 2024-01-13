@@ -34,7 +34,7 @@
 
 </style>
 
-<footer class="middlefooter p-2 my-2 ">
+<footer class="middlefooter p-2 mt-2 ">
     <div class="text-center">
         <p>Visítanos en YouTube, en donde encontrarás una extensiva librería de conocimiento psicológico en video.</p>
     </div>
@@ -51,7 +51,7 @@
 
       <script>
         // Fetch video data using AJAX
-        fetch('footer/')
+        fetch('/footer')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('vid1').innerHTML = `<iframe width="300" height="215" src="https://www.youtube.com/embed/${data.latest_video}" ></iframe>`;

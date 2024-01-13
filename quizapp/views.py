@@ -8,6 +8,7 @@ from .forms import RegisterUserForm, ProfileForm
 from django.db.models import Prefetch
 from googleapiclient.discovery import build
 from django.http import JsonResponse
+from datetime import datetime
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -182,34 +183,37 @@ def process_response(request):
         if category_id==1:
         # Perform further processing with the total points, for example, save it to the database
             if total_points<=10:
-                mental_status='Ansiedad mínima o nula'
+                mental_status='Ansiedad mínima o nula: Un resultado en este rango no necesariamente indica ausencia total de preocupaciones o estrés. Es normal experimentar algún grado de ansiedad en respuesta a situaciones cotidianas. Sin embargo, un nivel bajo en el inventario sugiere que estos no son prominentes o problemáticos.'
             elif total_points>10 and total_points<=20:
-                mental_status='Ansiedad leve'
+                mental_status='Ansiedad leve: Este resultado indica que la persona puede estar experimentando algunos síntomas de ansiedad, pero estos son leves y probablemente no interfieran de manera significativa con sus actividades diarias. Sin embargo, el resultado puede fungir como un punto de partida para la discusión sobre estrategias de manejo de estrés y ansiedad.'
             elif total_points>20 and total_points<=30:
-                mental_status='Ansiedad moderada'
+                mental_status='Ansiedad moderada: Esta puntuación indica que la persona está experimentando una cantidad significativa de síntomas de ansiedad. Esto significa que la ansiedad está presente y es notable, pero no necesariamente abrumadora o incapacitante. Una puntuación moderada puede sugerir la necesidad de una evaluación más profunda por parte de un profesional de la salud mental.'
             else:
-                mental_status='Ansiedad severa'
-            return HttpResponse(f'Mental Status: {mental_status} ')
-
+                mental_status='Ansiedad severa: Las personas con puntuaciones en el rango severo pueden presentar síntomas como preocupaciones y miedos extremos, pánico, dificultad para respirar, mareos, temblores, y un estado constante de hiperactividad del sistema nervioso. Se recomienda que las personas con una puntuación severa busquen la evaluación y el tratamiento de un profesional de la salud mental, ya que pueden beneficiarse de terapias específicas, apoyo y posiblemente medicación para manejar sus síntomas.'
+            result(request,mental_status,category_id)
+            return render(request, 'result_anxiety.html', {'mental_status':mental_status})
         elif category_id==2:
             if total_points<=10:
-                mental_status='Depresión mínima o nula'
+                mental_status='Depresión mínima o nula: Una puntuación en este rango sugiere que la persona presenta muy pocos o ningún síntoma de depresión significativo. Esto puede interpretarse como una indicación de que actualmente no se está experimentando depresión clínica.'
             elif total_points>10 and total_points<=20:
-                mental_status='Depresión  leve'
+                mental_status='Depresión leve: Una puntuación en este rango significa que la persona puede estar experimentando síntomas que no son lo suficientemente severos como para constituir un episodio depresivo mayor. Sin embargo, puede ser un indicador para realizar una evaluación más profunda.'
             elif total_points>20 and total_points<=30:
-                mental_status='Depresión  moderada'
+                mental_status='Depresión moderada: Este rango indica que la persona está experimentando varios síntomas de depresión, como tristeza persistente, problemas de autoestima, dificultades de concentración y cambios en el sueño o el apetito, con un impacto moderado en su funcionamiento diario.'
             else:
-                mental_status='Depresión  severa'
-            return HttpResponse(f'Mental Status: {mental_status} ')
+                mental_status='Depresión severa: Los individuos con una puntuación en este rango suelen experimentar una amplia gama de síntomas graves de depresión, posibles pensamientos de autolesión o suicidio, y otros síntomas que impactan considerablemente en su bienestar y capacidad para realizar actividades diarias.'
+            result(request,mental_status,category_id)
 
+            return render(request, 'result_depression.html', {'mental_status':mental_status})       
         elif category_id==3:
             if 30<=total_points<=40:
-                mental_status='Autoestima elevada'
+                mental_status='Autoestima elevada. Esta puntuación refleja una actitud general de aceptación y satisfacción con uno mismo, y sugiere que la persona se siente competente para enfrentar los desafíos de la vida. Las personas con autoestima elevada suelen mostrar resiliencia frente a las adversidades y tienden a tener una perspectiva optimista de sus capacidades y su valía personal.'
             elif 26<=total_points<=29:
-                mental_status='Autoestima media'
+                mental_status='Autoestima media. La persona puede tener una visión positiva de sus propias capacidades y valor en algunas áreas, mientras que en otras puede tener dudas o ser crítica consigo misma. Una autoestima media sugiere que la persona ni se sobrevalora ni se infravalora de manera consistente, y su nivel de satisfacción consigo misma podría ser influenciado por las circunstancias.'
             else:
-                mental_status='Autoestima baja '
-            return HttpResponse(f'Mental Status: {mental_status} ')
+                mental_status='Autoestima baja. Este resultado indica que la persona tiene una percepción negativa de sí misma. Esto se manifiesta en una tendencia a ver sus propias capacidades y valor personal de manera crítica y posiblemente poco realista. La persona puede sentir que no cumple con sus propias expectativas o las de otros, y puede tener dificultades para reconocer sus logros y cualidades positivas. '
+            result(request,mental_status,category_id)
+
+            return render(request, 'result_autostima.html', {'mental_status':mental_status})
         elif category_id==4:
             Categories=[]
 
@@ -227,49 +231,56 @@ def process_response(request):
             second_max_value = categories[-2][1]
             secmaxcat=categories[-2][0]
             if maxcat=='c1':
-                cat1="Ciencias y Tecnología"
+                cat1="Ciencias y Tecnología: Esta categoría indica que la persona podría encontrar satisfacción y éxito en ambientes que se enfocan en la innovación, la resolución de problemas técnicos, el análisis lógico, y el trabajo con tecnologías avanzadas."
             elif maxcat=='c2':
-                cat1="Artes y Creatividad"
+                cat1="Artes y Creatividad: Esta categoría indica una marcada preferencia y entusiasmo por actividades y carreras relacionadas con la expresión artística y la creatividad. La persona podría disfrutar y sobresalir en entornos que valoran la originalidad, la expresión personal y la exploración de ideas a través de medios artísticos y creativos."
             elif maxcat=='c3':
-                cat1="Ciencias Sociales y Humanidades"
+                cat1="Ciencias Sociales y Humanidades: Esta categoría indica que la persona podría encontrar satisfacción y éxito en profesiones o estudios que se centran en el análisis de fenómenos sociales, la educación, o el compromiso con causas sociales y culturales."
             elif maxcat=='c4':
-                cat1="Negocios y Emprendimiento"
+                cat1="Negocios y Emprendimiento: Esta categoría indica una marcada inclinación y entusiasmo por actividades y carreras relacionadas con el mundo empresarial.  La persona podría disfrutar y sobresalir en entornos que valoran la toma de decisiones estratégicas, la innovación en los negocios, el liderazgo, y la gestión de proyectos y recursos."
             elif maxcat=='c5':
-                cat1="Salud y Bienestar"
+                cat1="Salud y Bienestar: Esta categoría indica que la persona podría encontrar satisfacción y éxito en profesiones o estudios enfocados en la asistencia sanitaria, el apoyo terapéutico, la promoción de estilos de vida saludables y el cuidado directo de pacientes o clientes."
             elif maxcat=='c6':
-                cat1="Servicio y Comunidad"
+                cat1="Servicio y Comunidad: Esta categoría indica que la persona podría disfrutar y sobresalir en entornos que valoran la contribución al bienestar social, la asistencia a personas en necesidad, el involucramiento en la comunidad y la promoción del cambio social positivo."
             else :
-                cat1="Oficios y Técnicas Manuales"
+                cat1="Oficios y Técnicas Manuales: Esta categoría indica una marcada preferencia por carreras y actividades que implican habilidades prácticas, trabajo manual y técnico. Esto incluye áreas como carpintería, construcción, electricidad, electrónica y mecánica automotriz."
             if secmaxcat=='c1':
-                cat2="Ciencias y Tecnología"
+                cat2="Ciencias y Tecnología: Esta categoría indica que la persona podría encontrar satisfacción y éxito en ambientes que se enfocan en la innovación, la resolución de problemas técnicos, el análisis lógico, y el trabajo con tecnologías avanzadas."
             elif secmaxcat=='c2':
-                cat2="Artes y Creatividad"
+                cat2="Artes y Creatividad: Esta categoría indica una marcada preferencia y entusiasmo por actividades y carreras relacionadas con la expresión artística y la creatividad. La persona podría disfrutar y sobresalir en entornos que valoran la originalidad, la expresión personal y la exploración de ideas a través de medios artísticos y creativos."
             elif secmaxcat=='c3':
-                cat2="Ciencias Sociales y Humanidades"
+                cat2="Ciencias Sociales y Humanidades: Esta categoría indica que la persona podría encontrar satisfacción y éxito en profesiones o estudios que se centran en el análisis de fenómenos sociales, la educación, o el compromiso con causas sociales y culturales."
             elif secmaxcat=='c4':
-                cat2="Negocios y Emprendimiento"
+                cat2="Negocios y Emprendimiento: Esta categoría indica una marcada inclinación y entusiasmo por actividades y carreras relacionadas con el mundo empresarial.  La persona podría disfrutar y sobresalir en entornos que valoran la toma de decisiones estratégicas, la innovación en los negocios, el liderazgo, y la gestión de proyectos y recursos."
             elif secmaxcat=='c5':
-                cat2="Salud y Bienestar"
+                cat2="Salud y Bienestar: Esta categoría indica que la persona podría encontrar satisfacción y éxito en profesiones o estudios enfocados en la asistencia sanitaria, el apoyo terapéutico, la promoción de estilos de vida saludables y el cuidado directo de pacientes o clientes."
             elif secmaxcat=='c6':
-                cat2="Servicio y Comunidad"
-            else:
-                cat2="Oficios y Técnicas Manuales"
-            print(categories)
-            print(max_value,second_max_value)
-            print(cat1,cat2)
-            return HttpResponse(f'Mental Status: {cat1} second_max_value: {cat2} ')
+                cat2="Servicio y Comunidad: Esta categoría indica que la persona podría disfrutar y sobresalir en entornos que valoran la contribución al bienestar social, la asistencia a personas en necesidad, el involucramiento en la comunidad y la promoción del cambio social positivo."
+            else :
+                cat2="Oficios y Técnicas Manuales: Esta categoría indica una marcada preferencia por carreras y actividades que implican habilidades prácticas, trabajo manual y técnico. Esto incluye áreas como carpintería, construcción, electricidad, electrónica y mecánica automotriz."
             
+            mental_status=cat1+" , "+cat2
+            result(request,mental_status,category_id)
+            return render(request, 'result_oriention.html', {'cat1':cat1,'cat2':cat2})            
 
-        if request.user.is_authenticated:
-        # Access the user's ID
-            user_id = request.user.id
-            quiz_result = QuizResult(id=user_id,mental_status=mental_status,Category=category_id,date='2021-10-10')
-            quiz_result.save()
-        return HttpResponse(f'Mental Status: {mental_status} ')
+        
     
 
     # Handle cases where the form is accessed via GET request
-    return HttpResponse('This view only accepts POST requests.')
+def result(request,mental_status,category_id):
+    if request.user.is_authenticated:
+        # Access the user's ID
+            print('result updated')
+            user_id = request.user.id
+            today_date = datetime.now().date()
+
+            quiz_result = QuizResult(id=user_id,mental_status=mental_status,Category=category_id,date=today_date)
+            quiz_result.save()
+    else:
+        print("no user logged in")
+
+
+
 def chatbot(request):
     return render(request, 'chatbot.html')
 
