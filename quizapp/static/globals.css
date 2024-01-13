@@ -15,7 +15,7 @@
 }
 
 .blue:hover{
-
+    color: white;
     background-color: green;
 }
 
