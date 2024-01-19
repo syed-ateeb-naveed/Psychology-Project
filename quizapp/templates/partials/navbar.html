@@ -5,7 +5,6 @@
    
     <a class="navbar-brand" href="#">
       <img src="{% static 'image.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-      hehe
     </a>
 
     <button
@@ -21,22 +20,6 @@
     </button>
     <div class="collapse navbar-collapse" style='color:black;' id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-        </li>
-
-        {%if user.is_authenticated%}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">login_Iniciar sesión</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Create an account</a>
-        </li>
-        {% endif %}
 
         <li class="nav-item">
           <a
@@ -47,18 +30,25 @@
           >
         </li>
 
+        {%if user.is_authenticated%}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'faq' %}"
-            >FAQ- </a
-          >
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Create an account</a>
+        </li>
+        {% endif %}
 
         <li class="nav-item">
           <a
             class="nav-link active"
             aria-current="page"
             href="{% url 'forms' %}"
-            >Form_Formatos para psicólogos</a
+            >Formatos para psicólogos</a
           >
         </li>
       </ul>
