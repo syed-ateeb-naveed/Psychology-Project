@@ -28,12 +28,11 @@
         <div class="col-sm align-content-center justify-content-center text-center">
           <img
           
-          height="350px"
+          height="400px"
             width="300px"
             style='border-radius:50px'
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcolorbook.io%2Fhexcolors%2Fview%2Fffffff&psig=AOvVaw0UQJwJ56zp4NqBTe4wgZ6G&ust=1705250978883000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJCmuInp2oMDFQAAAAAdAAAAABAD" 
-            {% comment %} src="https://plus.unsplash.com/premium_photo-1669047670905-fa4331d07e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" {% endcomment %}
-            class="img-thumbnail round"
+            src={% static "Jaime.png" %} 
+                  class="img-thumbnail round"
             alt="Responsive image"
           />
         </div>
@@ -46,11 +45,11 @@
 
         <div class="col-sm text-center align-content-center justify-content-center">
           <img
-            height="350px"
+            height="300px"
             width="300px"
           
             style='border-radius:50px' 
-            {% comment %} src="https://plus.unsplash.com/premium_photo-1669047670905-fa4331d07e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" {% endcomment %}
+            src={% static "Cony.jpg" %}
             class="img-thumbnail round"
             alt="Responsive image"
           />
@@ -59,7 +58,8 @@
 
         <div class="col-sm text-center">
           <h3 class="m-1">
-            María Sánchez:
+            María Sánchez
+
           </h3>
           <p class="m-3">
              Psicóloga especializada en evaluación psicológica, psicometría y entrevista profunda y por competencia.   </p>
@@ -76,19 +76,21 @@
 
         <div class="col-sm  text-center">
           <h3 class="m-1">
-            Pulse Montreal:
+            SymmArts Hub
+
           </h3>
           <p class="m-3">
-             XX </p>
+            Organización no lucrativa originaria de Montreal, Canadá con el propósito de unir comunidades internacionales y promover la salud, el arte y el mundo digital.
+          </p>
         </div>
 
         <div class="col-sm text-center">
-          <img
-            height="350px"
-            width="300px"
+         <img
+            height="500px"
+            width="350px"
             style='border-radius:50px' 
-            {% comment %} src="https://plus.unsplash.com/premium_photo-1669047670905-fa4331d07e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" {% endcomment %}
-            class="img-thumbnail "
+            src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAMFBMVEX////f39/d3d38/Pzh4eHs7Ozy8vL4+Pj19fXq6urk5OTv7+/m5ubr6+v29/bn6Of+ydA3AAAEWElEQVR4nO2d2XLDIAxFbcDGW5r//9vGbdM2xU4EKha+6Dx0pm/kjJBYDDSNoiiKoiiKoiiKoiiKoiiKoiiKoiiKohyOtbbv/e2vlW5JGdh5HifTrhjjxrnz0i2Sxi/OfAr54vafc3Nfrxi7tA9CfomZbn1JunkSeLcl5FvMch2kW3g4/WaMPITLMtcVLM+j5Jteup1HspCU3LpQPfl2eNVzfqzM0m09igvZSWuulWQVspFViqtAivfXGCdt6+CTymDoHecuBTxShlghFUiZUpxgS6FX4QegS3Jkev0Bd0jr08JkjRTY3pPupB2l254L4jxnE9RRSlrV+QQ1zXKcOOnG5yGxEn9iMFfeZpYTzHLM6TqonYcTJqgDfJYSTCdenQR0vL7TIhYeVtkBnRxznXTSPyADI0sJpBNL2/yrywkzxaoTdaJOEp0g1mLeFBBzzHbhKYEc2zPHbJBOmPMdSCc9S0nbSrc/C6yBLGIpbphrSqDrsaxJIKgT1l4G6kYgZ9Q2STc+D6zVAgfZd+zE6juQ8x3uGjXiNyjMsb06USc01EkQJoifb3FzLGCYcONkkW5/Dnh76KDfKWmYhLDC5E269XmION8VMCFm2Ia3VnCVbnwmOPNiVCeMagy6GnvDJocJ4lzni6SjbyuwYdKk74/ihkmTuPGFOji5Y8foRIt/bUHsdyj4Z66b2K0v0L2uP8Sto6gTdaJO7kSW4xpSbOQ6ShVlJ7LwgO6d/+XlTWQPcSLd2mOIWqyuIsU2UZ0HdLk+hHhn3Qd1pNgmIlCqCZOIu2Fgl2FDqHEC+W3SDguxGuMuTYeQnWichNQyOmnolwhBnsXYgZpja3LSqZMA8m66dEMPhLwfKN3QAyHPjKUbeiDqJITqpKYcS90LVCcb1LNUQHZS0xyQHCeI39jvQN72qmMXsFkPwVGVrKsFVaTZuE9CjevxrfjYE7XGXaCt2Jm8nPTbihlRrdjZbT/iRbACuZfuB+d4h5qmAertM+vH+LdDwmAx04BiZeiYEfLby4hQnIfkJLJj5exHvvzMvOVx04q7nDfh2vkfssi2lus5rdguQ4z8WFnOt47g+/9LrDtWxnNZseP/JtYdK9N5rLztPDqbxcopSnOfMqVJZ+qKtzLwbghKwExFrybYjnshapoVN5Vamm32UvOEIntQ3uHIa8orzf0sGCNfUsy1pBXtW6eRNvKBKeVmu7T1xEyYpYQXj+U7zV+k063l3hyVAel3oDn3vGREUgr7HrpMCEYK962UbAjuM8ffPXAUcgc6RGY3NKQ6D+Pt3dyYizoJkDpvyruIPC9STjhvNOdGqhqXWolXhKpxsaOTFXUSIuTkTfp3P0PISdRdDEejTkLUSYg62UDms/SyncgMZAtdY7sjMpAteWgvNbiX/tXPUScbSGyrFz20b2XOzZXuRGKAok7O50TkPpmynYjcsZN8MfsxiJzDLXD3/AGJowqlO5EYtHXGlQzjeZp3TSc+LoSs340AAAAASUVORK5CYII='
+             class="img-thumbnail "
             alt="Responsive image"
           />
         </div>
