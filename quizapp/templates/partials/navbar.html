@@ -1,63 +1,63 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-md bg-body-tertiary">
   <div class="container-fluid">
    
     <a class="navbar-brand" href="{% url 'home' %}">
       <img src="{% static 'image.png' %}" width="50" height="65" class="d-inline-block align-top" alt="">
     </a>
+    <div class="d-flex flex-row-reverse">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+      </button>
+      <div class="collapse navbar-collapse" style='color:black;' id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sm">
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
-    </button>
-    <div class="collapse navbar-collapse" style='color:black;' id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="{% url 'about' %}"
+              style="color: black;"
+              >¿Cómo te sientes hoy?</a
+            >
+          </li>
 
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'about' %}"
-            style="color: black;"
-            >¿Cómo te sientes hoy?</a
-          >
-        </li>
+          {%if user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}"
+            style="color: black;">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}"
+            style="color: black;">Iniciar sesión</a>
+          </li>
+          {% comment %} <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}"
+            style="color: black;">Create an account</a>
+          </li> {% endcomment %}
+          {% endif %}
 
-        {%if user.is_authenticated%}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}"
-          style="color: black;">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}"
-          style="color: black;">Iniciar sesión</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}"
-          style="color: black;">Create an account</a>
-        </li>
-        {% endif %}
-
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'forms' %}"
-            style="color: black;"
-            >Formatos para psicólogos</a
-          >
-        </li>
-      </ul>
-    
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="{% url 'forms' %}"
+              style="color: black;"
+              >Formatos para psicólogos</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
