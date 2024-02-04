@@ -34,8 +34,11 @@
       {% endblock %}
     </div>
 
-    {% include 'partials/footer.html'%}
+    {% block footer%}
+
+      {% include 'partials/footer.html'%}
     
+    {% endblock %}
 
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
