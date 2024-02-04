@@ -11,7 +11,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
    <link href="{% static 'globals.css' %}" rel="stylesheet">
-    <title>Hello, world!</title>
+    <title>Aprendamos Psicología</title>
    
   </head>
   <body class='ww'>
@@ -20,11 +20,11 @@
     {% include 'partials/navbar.html' %}
     
     <br/>
-    <div >
+    <div class='ww' >
         {% if messages%}
             {% for message in messages%}
 
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning ww" role="alert">
                 {{message}}
             </div>
                 
@@ -35,6 +35,7 @@
     </div>
 
     {% include 'partials/footer.html'%}
+    
 
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
