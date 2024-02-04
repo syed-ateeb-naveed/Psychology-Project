@@ -2,13 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Merriweather&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Merriweather&family=Roboto&display=swap');
 a {
-    font-family: 'Lilita One', sans-serif;
+   
     font-family: 'Merriweather', serif;
 }
 
 p {
-    font-family: 'Lilita One', sans-serif;
-    font-family: 'Merriweather', serif;
+   
     font-family: 'Roboto', sans-serif;
 }
 
@@ -20,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn{
-    font-family: 'Lilita One', sans-serif;
+   
     font-family: 'Merriweather', serif;
 }
 
