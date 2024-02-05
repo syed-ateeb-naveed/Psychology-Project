@@ -131,6 +131,8 @@ STATICFILES_DIR = [BASE_DIR,'quizapp/static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+PASSWORD_RESET_CONFIRM_TEMPLATE = 'registration/password_reset_email.html'
+
 LOGIN_URL = 'login'
 
 EMAIL_HOST = 'smtp.gmail.com'

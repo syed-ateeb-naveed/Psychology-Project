@@ -18,7 +18,7 @@ urlpatterns = [
     path('footer/',views.get_videos,name='footer'),
 
     #reset views
-    path('auth/reset', auth_views.PasswordResetView.as_view(), name="reset_password"),
+    path('auth/reset', auth_views.PasswordResetView.as_view(html_email_template_name="reset_password_email.html"), name="reset_password"),
     path('auth/reset_sent', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     path('auth/reset_complete', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
