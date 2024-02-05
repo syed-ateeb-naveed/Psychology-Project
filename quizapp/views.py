@@ -13,11 +13,16 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.views import PasswordResetView
 
 User = get_user_model()
 # Create your views here.
 api_key = 'AIzaSyDtqvCUJJhv6N7DBJrXI7lyzwjsCYPCiy4'
 youtube = build('youtube', 'v3', developerKey=api_key)
+
+
+class CustomPasswordResetView(PasswordResetView):
+    subject_template_name = 'password_reset_subject.txt'
 
 def login_user(request):
 

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import quiz_view, process_response,chatbot,get_videos
+from .views import quiz_view, process_response, chatbot, get_videos, CustomPasswordResetView
 
 urlpatterns = [
     path('auth/login', views.login_user, name='login'),
@@ -18,7 +18,7 @@ urlpatterns = [
     path('footer/',views.get_videos,name='footer'),
 
     #reset views
-    path('auth/reset', auth_views.PasswordResetView.as_view(html_email_template_name="reset_password_email.html"), name="reset_password"),
+    path('auth/reset', CustomPasswordResetView.as_view(html_email_template_name="reset_password_email.html"), name="reset_password"),
     path('auth/reset_sent', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     path('auth/reset_complete', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
