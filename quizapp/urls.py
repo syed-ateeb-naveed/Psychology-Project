@@ -18,10 +18,10 @@ urlpatterns = [
     path('footer/',views.get_videos,name='footer'),
 
     #reset views
-    path('auth/reset', CustomPasswordResetView.as_view(html_email_template_name="reset_password_email.html"), name="reset_password"),
-    path('auth/reset_sent', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path('auth/reset_complete', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    path('auth/reset', CustomPasswordResetView.as_view(template_name="reset_password.html", html_email_template_name="reset_password_email.html"), name="reset_password"),
+    path('auth/reset_sent', auth_views.PasswordResetDoneView.as_view(template_name="reset_done.html"), name="password_reset_done"),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="reset_confirm.html"), name="password_reset_confirm"),
+    path('auth/reset_complete', auth_views.PasswordResetCompleteView.as_view(template_name="reset_complete.html"), name="password_reset_complete"),
     # pages
     path('oriention/', views.oriention, name='oriention'),
     path('about/', views.about_us, name='about'),

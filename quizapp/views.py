@@ -46,27 +46,27 @@ def logout_user(request):
 
     return redirect('home')
 
-def reset_password(request):
-    if request.method == "POST":
-        message = "Hi"
-        email = request.POST['email']
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            messages.error(request, "Email does not exist.")
-            return redirect('passwordReset')
-        subject = "OTP for Password Reset"
-        send_mail(
-            subject,
-            message,
-            "Ateeb <ateebnaveed1996@gmail.com>",
-            [email],
-            fail_silently=False
-        )
+# def reset_password(request):
+#     if request.method == "POST":
+#         message = "Hi"
+#         email = request.POST['email']
+#         try:
+#             user = User.objects.get(email=email)
+#         except User.DoesNotExist:
+#             messages.error(request, "Email does not exist.")
+#             return redirect('passwordReset')
+#         subject = "OTP for Password Reset"
+#         send_mail(
+#             subject,
+#             message,
+#             "Ateeb <ateebnaveed1996@gmail.com>",
+#             [email],
+#             fail_silently=False
+#         )
 
-        messages.success(request, ("Email sent successfully !"))
+#         messages.success(request, ("Email sent successfully !"))
 
-    return render(request, 'reset.html', {})
+#     return render(request, 'reset.html', {})
 
 def register_user(request):
 
