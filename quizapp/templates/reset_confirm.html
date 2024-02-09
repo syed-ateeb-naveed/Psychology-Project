@@ -1,10 +1,29 @@
 {% extends "base.html" %} {%block content%}
+{% load widget_tweaks %}
 
-<h3>Crear una nueva contraseña:</h3>
-<br /><br />
+<div class="container">
+  <h3 class="text-center">Crear una nueva contraseña</h3>
+  <br /><br />
 
-<form method="POST">
-  {% csrf_token %} {{ form }}
-  <input type="Submit" name="Update Password" />
-</form>
+  <div class="d-flex justify-content-center">
+    <form method="POST">
+      {% csrf_token %} 
+      {% comment %} {{ form }} {% endcomment %}
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Contraseña:</label>
+        {% render_field form.new_password1 type="password" class="form-control" placeholder="Usa letras, numeros y simbolo(s)" name="password1" %}
+      </div>
+        
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Repetir contraseña:</label>
+        {% render_field form.new_password2 type="password" class="form-control" placeholder="Confirm Password" name="password2" %}
+      </div>
+
+      {% comment %} <input type="Submit" name="Update Password" /> {% endcomment %}
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn m-5 pink text-white">Restablecer contraseña</button>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}
