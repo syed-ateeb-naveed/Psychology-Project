@@ -3,6 +3,12 @@
 <form action="" method="POST">
   {% csrf_token %}
   <div class="container text-center align-items-center">
+    {% comment %} {% if custom_message %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ custom_message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %} {% endcomment %}
     <div class="row">
       <div class="col-sm m-3">
         <h2 class="my-5">Entrar a mi cuenta</h2>

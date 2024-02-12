@@ -21,19 +21,20 @@
     {% include 'partials/navbar.html' %}
     
     <br/>
-    <div class='ww' >
+      <div class="container align-items-center">
         {% if messages%}
             {% for message in messages%}
 
-            <div class="alert alert-warning ww" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show ww text-center" role="alert">
                 {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
                 
             {% endfor %}
         {% endif %}
+      </div>
       {% block content %}
       {% endblock %}
-    </div>
 
     {% block footer%}
 

@@ -13,7 +13,9 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import PasswordResetView, PasswordResetCompleteView, PasswordResetConfirmView
+from django.urls import reverse_lazy
 
 User = get_user_model()
 # Create your views here.
@@ -24,6 +26,23 @@ youtube = build('youtube', 'v3', developerKey=api_key)
 class CustomPasswordResetView(PasswordResetView):
     subject_template_name = 'password_reset_subject.txt'
 
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Tu contraseña se ha restablecido")
+        return response
+    
+# class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+#       # Specify your custom template name
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['custom_message'] = "Tu contraseña se ha restablecido"  # Add your custom message to the context
+#         return context
+
+    
 def login_user(request):
 
     if request.method == "POST":
