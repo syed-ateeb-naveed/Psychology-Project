@@ -18,7 +18,7 @@
           <p class='py-3'></p>
 
           <p class="py-5">
-            sa los resultados de tus tests anteriores. Una vez que hayas tomado un test, puedes volver a tomarlo después de 5 meses.
+            Revisa los resultados de tus tests anteriores. Una vez que hayas tomado un test, puedes volver a tomarlo después de 5 meses.
           </p>
           <img
           src="{% static 'icon.png' %}"
@@ -36,22 +36,22 @@
             <div class="d-flex  flex-column text-center align-items-center justify-content-center">
       
               <div>
-                <a class="btn pink my-2 " href="/anxiety" role="button"
+                <a class="btn pink my-2 " href="/anxiety" role="button" id="checkEligibility"
                   >Ansiedad</a
                 >
               </div>
               <div>
-                <a class="btn pink my-2 " href="/depression" role="button"
+                <a class="btn pink my-2 " href="/depression" role="button" id="checkEligibility"
                   >Depresión</a
                 >
               </div>
               <div>
       
-                <a class="btn pink my-2 " href="/autostima" role="button">
+                <a class="btn pink my-2 " href="/autostima" role="button" id="checkEligibility">
                   Autostima</a>
               </div>
               <div>
-             <a class="btn blue my-2 " href="/oriention" role="button">
+             <a class="btn blue my-2 " href="/oriention" role="button" id="checkEligibility">
                   Orientación Vocacional</a>
               </div>
             </div> 
@@ -59,6 +59,14 @@
               <a class="btn btn-success my-4 " href="/oriention" role="button">
                 Ir a mi diario</a>
                </div>
+              <br>
+              {%if cat_id%}
+               <div>
+                <a class="btn pink my-2 " href="{% url 'display_result' cat_id %}" role="button" id="checkEligibility"
+                  >ver resultados</a
+                >
+              </div>
+              {%endif%}
              </div>  
           </div>
 </div>

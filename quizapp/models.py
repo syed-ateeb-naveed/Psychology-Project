@@ -41,13 +41,7 @@ class Choice(models.Model):
     points = models.IntegerField()
     def __str__(self):
         return self.text
-class QuizResult(models.Model):
-    id=models.IntegerField(primary_key=True)
-    mental_status = models.CharField(max_length=1000)
-    Category = models.IntegerField()
-    date=models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return str(self.id)
+
 
 class Questionwithparts(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -59,4 +53,11 @@ class Partsofquestion(models.Model):
     text = models.TextField()
     def __str__(self):
         return self.text
-    
+
+class Result(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    mental_status = models.CharField(max_length=10000)
+    date=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return str(self.user)

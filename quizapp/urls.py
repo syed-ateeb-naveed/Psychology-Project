@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import quiz_view, process_response,chatbot,get_videos
+from .views import quiz_view, process_response,chatbot,get_videos,display_result
 
 urlpatterns = [
     path('auth/login', views.login_user, name='login'),
@@ -41,6 +41,8 @@ urlpatterns = [
     path('result_autostima/', views.result_autostima, name='result_autostima'),
     path('result_depression/', views.result_depression, name='result_depression'),
     path('result_oriention/', views.result_oriention, name='result_oriention'),
+    path('display_result/<int:cat_id>', views.display_result, name='display_result'),
+
                 
 
 

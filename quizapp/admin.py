@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,Category,Question,Choice,QuizResult,Questionwithparts,Partsofquestion
+from .models import Profile,Category,Question,Choice,Result,Questionwithparts,Partsofquestion
 # Register your models here.
 
 admin.site.register(Profile)
@@ -19,7 +19,7 @@ class ChoiceAdmin(admin.ModelAdmin):
 class QuizResultAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(QuizResult, QuizResultAdmin)
+admin.site.register(Result, QuizResultAdmin)
 
 class QuestionwithpartsAdmin(admin.ModelAdmin):
     pass

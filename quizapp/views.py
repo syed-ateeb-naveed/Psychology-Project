@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Category, Question, Choice,QuizResult,Questionwithparts,Partsofquestion
+from .models import Category, Question, Choice,Result,Questionwithparts,Partsofquestion
 from django.http import HttpResponse
 from .forms import RegisterUserForm, ProfileForm
 from django.db.models import Prefetch
 from googleapiclient.discovery import build
 from django.http import JsonResponse
 from datetime import datetime
+from datetime import timedelta
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -28,7 +29,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             
-            return redirect('home')
+            return redirect('enduser')
         else:
             messages.success(request, ("There was an error logging in :(("))
             return redirect('login')
@@ -99,7 +100,13 @@ def faq_page(request):
 
 
 def oriention(request):
-
+    if request.user.is_authenticated:
+        user_id = User.objects.get(id=request.user.id)
+        category_id=4
+        chk=take_quiz(request,user_id,category_id)
+        if chk != None:
+            return chk    
+    
     return render(request, 'oriention.html', {})
 
 
@@ -107,16 +114,32 @@ def about_us(request):
 
     return render(request, 'about_us.html', {})
 def anxiety(request):
-
+    if request.user.is_authenticated:
+        user_id = User.objects.get(id=request.user.id)
+        category_id=1
+        chk=take_quiz(request,user_id,category_id)
+        if chk != None:
+            return chk
+      
     return render(request, 'anxiety.html', {})
 def autostima(request):
-
+    if request.user.is_authenticated:
+        user_id = User.objects.get(id=request.user.id)
+        category_id=3
+        chk=take_quiz(request,user_id,category_id)
+        if chk != None:
+            return chk    
     return render(request, 'autostima.html', {})
 def contact_us(request):
 
     return render(request, 'contact_us.html', {})
 def depression(request):
-
+    if request.user.is_authenticated:
+        user_id = User.objects.get(id=request.user.id)
+        category_id=2
+        chk=take_quiz(request,user_id,category_id)
+        if chk != None:
+            return chk    
     return render(request, 'depression.html', {})
 def enduser(request):
 
@@ -159,6 +182,7 @@ def  termscondition(request):
 def quiz_view(request, category_id):
 
     if category_id==1 or category_id==2 :
+        
         questions = Question.objects.filter(category_id=category_id)
         choices=Choice.objects.filter(category_id=category_id)
         return render(request, 'quiz.html', {'questions': questions,"choices":choices,"category_id":category_id})
@@ -177,6 +201,7 @@ def quiz_view(request, category_id):
         return render(request, 'quiz3.html', {'questions': questions,"choices":choices,"category_id":category_id})
 
 def process_response(request):
+
     if request.method == 'POST':
         total_points = int(request.POST.get('total_points', 0))
         category_id=int(request.POST.get('category_id', 0))
@@ -259,7 +284,7 @@ def process_response(request):
             else :
                 cat2="Oficios y Técnicas Manuales: Esta categoría indica una marcada preferencia por carreras y actividades que implican habilidades prácticas, trabajo manual y técnico. Esto incluye áreas como carpintería, construcción, electricidad, electrónica y mecánica automotriz."
             
-            mental_status=cat1+" , "+cat2
+            mental_status=cat1+" & "+cat2
             result(request,mental_status,category_id)
             return render(request, 'result_oriention.html', {'cat1':cat1,'cat2':cat2})            
 
@@ -271,10 +296,10 @@ def result(request,mental_status,category_id):
     if request.user.is_authenticated:
         # Access the user's ID
             print('result updated')
-            user_id = request.user.id
+            user_id = User.objects.get(id=request.user.id)
             today_date = datetime.now().date()
-
-            quiz_result = QuizResult(id=user_id,mental_status=mental_status,Category=category_id,date=today_date)
+            category_id=Category.objects.get(id=category_id)
+            quiz_result = Result(user=user_id,mental_status=mental_status,category=category_id,date=today_date)
             quiz_result.save()
     else:
         print("no user logged in")
@@ -309,3 +334,47 @@ def get_videos(request):
     videos = {'latest_video': video_id, 'most_viewed_video': video_id2}
 
     return JsonResponse(videos)
+
+def take_quiz(request,user_id,category_id):
+    # Get the current date
+    today = datetime.now().date()
+    # Get the user's result if available
+    try:
+        user_result = Result.objects.get(user=user_id, category=category_id)
+        test_date = user_result.date.date()
+        # Calculate the difference between today's date and the test date
+        days_difference = (today - test_date).days
+        if days_difference <= 180:
+            # Calculate the minimum date the user can retake the quiz
+            eligible_date = test_date + timedelta(days=180)
+            error_message = f"You can only take the quiz on or after {eligible_date.strftime('%d-%m-%Y')}"
+            messages.error(request, error_message)
+            return render(request, 'enduser.html', {'cat_id': category_id})
+        else:
+            # Allow the user to take the quiz
+            empty=''
+            return empty
+    except Result.DoesNotExist:
+        # If user has not taken the test, allow them to take the quiz
+        return None
+
+def display_result(request,cat_id):
+    user_id = User.objects.get(id=request.user.id)
+    user_result = Result.objects.get(user=user_id, category=cat_id)
+    mental_status=user_result.mental_status
+    if cat_id==1:
+        return render(request, 'result_anxiety.html', {'mental_status':mental_status})
+    elif cat_id==2:
+        return render(request, 'result_depression.html', {'mental_status':mental_status})
+    elif cat_id==3:
+        return render(request, 'result_autostima.html', {'mental_status':mental_status})
+    elif cat_id==4:
+        tmp=mental_status.split("&")
+        print(tmp)
+        cat1=tmp[0]
+        cat2=tmp[1]
+        return render(request, 'result_oriention.html', {'cat1':cat1,'cat2':cat2})
+    else:
+        return None
+
+
