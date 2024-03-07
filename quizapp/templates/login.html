@@ -1,92 +1,81 @@
-{% extends "base.html" %}
-{% block content %}
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 
+<form action="" method="POST">
+  {% csrf_token %}
+  <div class="container text-center align-items-center">
+    {% comment %} {% if custom_message %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ custom_message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %} {% endcomment %}
+    <div class="row">
+      <div class="col-sm m-3">
+        <h2 class="my-5">Entrar a mi cuenta</h2>
+      </div>
 
+      <label class="form-label"><h5>Correo electrónico</h5> </label>
+      <div>
+        <input type="email" name="email" placeholder="tucorreo@web.xxx" />
+      </div>
+    </div>
+    <label class="form-label m-1"><h5>Contraseña:</h5> </label>
+    <div>
+      <input type="password" name="password" placeholder="Tu contraseña" />
+    </div>
 
+    <button class="btn m-3 pink text-white" type="submit">Entrar</button>
+    <div>
+      <a
+        class="btn btn"
+        href="{% url 'reset_password' %}"
+        style="color: white; background-color: gray"
+        >Olvidé mi contraseña</a
+      >
+    </div>
+    <p class="my-2">¿Aún no estás registrado(a)?</p>
 
-    <form action="" method = "POST">
-        {% csrf_token %}
+    <div>
+      <a class="btn m-3 blue" href="{% url 'register' %}">Registrarme</a>
 
+      <button class="btn m-3 blue" href="" type="submit">
+        Iniciar sesión con Google
+      </button>
+    </div>
+  </div>
 
-
-        <div class="container text-center align-items-center">
-            <div class="row">
-              <div class="col-sm m-3">
-                <h2 class="my-5">
-                    Entrar a mi cuenta
-                </h2>
-              </div class='m-1'>
-    
-              <label  class="form-label "><h5>		Correo electrónico</h5> </label>
-              <div> <input type="email" name="email" placeholder="tucorreo@web.xxx"/>
-              </div>
-
-            </div class='m-1'>
-            <label  class="form-label m-1 "><h5>Contraseña:</h5> </label>
-            <div> <input type="password" name="password" placeholder="Tu contraseña"/>
-            </div>
-           
-              <button class="btn m-3 pink text-white" type="submit">Entrar</button>
-              <div>
-                <button class="btn btn" href='/reset_password' style="color:white;background-color:  gray" type="submit">Olvidé mi contraseña</button>
-           
-              </div>
-              <p class="my-2">¿Aún no estás registrado(a)?</p> 
-
-                <div>
-                <a class="btn m-3 blue" href="{% url 'register' %}">Registrarme</a>
-
-                
-              <button class="btn m-3 blue" href='' type="submit">Iniciar sesión con Google</button>
-            </div>
-              </div>
-             
-            </div>
-                
-    
-            </div>
-          
-              
-            </div>
-          </div>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Correo electrónico.</label>
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-        <button type="submit" value = "submit" class="btn btn-danger">Entrar</button>
-        <p>Aún no estás registrado? </p>
-        <button type="submit" value = "submit" class="btn btn-primary">Crear cuenta.</button> {% endcomment %}
-        {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'passwordReset' %}">Forgot password?</a> {% endcomment %}
-
-
-    </form>
+  {% comment %}
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label"
+      >Correo electrónico.</label
+    >
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      aria-describedby="emailHelp"
+    />
+    <div id="emailHelp" class="form-text">
+      We'll never share your email with anyone else.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" name="password" />
+  </div>
+  <button type="submit" value="submit" class="btn btn-danger">Entrar</button>
+  <p>Aún no estás registrado?</p>
+  <button type="submit" value="submit" class="btn btn-primary">
+    Crear cuenta.
+  </button>
+  {% endcomment %} {% comment %}
+  <a
+    class="nav-link active"
+    aria-current="page"
+    href="{% url 'passwordReset' %}"
+    >Forgot password?</a
+  >
+  {% endcomment %}
+</form>
 
 {% endblock %}

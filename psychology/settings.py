@@ -39,11 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
     'custom_user.apps.CustomUserConfig',
-    'quizapp'
+    'quizapp',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'custom_user.User'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -130,6 +136,8 @@ STATICFILES_DIR = [BASE_DIR,'quizapp/static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PASSWORD_RESET_CONFIRM_TEMPLATE = 'registration/password_reset_email.html'
 
 LOGIN_URL = 'login'
 

@@ -1,21 +1,86 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+
+
 {%block content%}
 
-<h1> Register </h1>
+<div class="container">
 
-    <br/><br/>
+    <h1 class="text-center"> Crear cuenta </h1>
 
-    <form action="" method = "POST" class="form">
+        <br/><br/>
+        <div class="d-flex justify-content-center">
+            <form action="" method = "POST" class="form">
 
-    {% csrf_token %}
-      
-    {{ user_form.as_p }}    
-      
-    {{ profile_form.as_p }}
+            {% csrf_token %}
+            
+            {% comment %} {{ user_form}}     {% endcomment %}
+            <div class="row">
 
-    <button type="submit" class="btn btn-primary"> Register </button>
-    
-    </form>
+                <div class="mb-3 col-4">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                    {% render_field user_form.first_name class="form-control" placeholder="Tu nombre" type="text" name="first_name" %}
+                </div>
+                
+                <div class="mb-3 col-6">
+                <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
+                {% render_field user_form.last_name type="text" class="form-control" placeholder="Apellidos" name="last_name" %}
+                </div>
+
+            </div>
+            
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Correo electrónico:</label>
+            {% render_field user_form.email type="email" class="form-control" placeholder="tucorreo@web.xxx" name="email" %}
+            </div>
+            
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Contraseña:</label>
+            {% render_field user_form.password1 type="password" class="form-control" placeholder="Usa letras, numeros y simbolo(s)" name="password1" %}
+            </div>
+            
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Repetir contraseña:</label>
+            {% render_field user_form.password2 type="password" class="form-control" placeholder="Confirm Password" name="password2" %}
+            </div>
+            
+            {% comment %} {{ profile_form}} {% endcomment %}
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Estado civil:</label>
+                {% render_field profile_form.civil_status type="text" class="form-control" placeholder="Estado civil" name="civil_status" %}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Ocupación:</label>
+                {% render_field profile_form.occupation type="text" class="form-control" name="occupation" %}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Lugar de residencia:</label>
+                {% render_field profile_form.place_of_residence type="text" class="form-control" placeholder="Lugar de residencia" name="place_of_residence" %}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Escolaridad:</label>
+                {% render_field profile_form.level_of_school type="text" class="form-control" name="level_of_school" %}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Número de celular:</label><br/>
+                {% render_field profile_form.cellphone type="number" id="phone" class="form-control" placeholder="Número de celular" name="cellphone" %}
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn m-3 pink text-white">Crear cuenta</button>
+            </div>
+            </form>
+        </div>
+
+</div>
+
 
 {% endblock %}

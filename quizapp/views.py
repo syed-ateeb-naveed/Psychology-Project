@@ -14,12 +14,36 @@ from datetime import timedelta
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import PasswordResetView, PasswordResetCompleteView, PasswordResetConfirmView
+from django.urls import reverse_lazy
 
 User = get_user_model()
 # Create your views here.
 api_key = 'AIzaSyDtqvCUJJhv6N7DBJrXI7lyzwjsCYPCiy4'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
+
+class CustomPasswordResetView(PasswordResetView):
+    subject_template_name = 'password_reset_subject.txt'
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Tu contraseña se ha restablecido")
+        return response
+    
+# class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+#       # Specify your custom template name
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['custom_message'] = "Tu contraseña se ha restablecido"  # Add your custom message to the context
+#         return context
+
+    
 def login_user(request):
 
     if request.method == "POST":
@@ -42,27 +66,27 @@ def logout_user(request):
 
     return redirect('home')
 
-def reset_password(request):
-    if request.method == "POST":
-        message = "Hi"
-        email = request.POST['email']
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            messages.error(request, "Email does not exist.")
-            return redirect('passwordReset')
-        subject = "OTP for Password Reset"
-        send_mail(
-            subject,
-            message,
-            "Ateeb <ateebnaveed1996@gmail.com>",
-            [email],
-            fail_silently=False
-        )
+# def reset_password(request):
+#     if request.method == "POST":
+#         message = "Hi"
+#         email = request.POST['email']
+#         try:
+#             user = User.objects.get(email=email)
+#         except User.DoesNotExist:
+#             messages.error(request, "Email does not exist.")
+#             return redirect('passwordReset')
+#         subject = "OTP for Password Reset"
+#         send_mail(
+#             subject,
+#             message,
+#             "Ateeb <ateebnaveed1996@gmail.com>",
+#             [email],
+#             fail_silently=False
+#         )
 
-        messages.success(request, ("Email sent successfully !"))
+#         messages.success(request, ("Email sent successfully !"))
 
-    return render(request, 'reset.html', {})
+#     return render(request, 'reset.html', {})
 
 def register_user(request):
 

@@ -17,24 +17,24 @@ class RegisterUserForm(UserCreationForm):
         model = User
         fields = ("first_name", "last_name", "email", "password1", "password2")
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
-        for field in self.fields:
-            self.fields[field].widget.attrs.update({'class': 'form-control'})
+    #     for field in self.fields:
+    #         self.fields[field].widget.attrs.update({'class': 'form-control'})
 
 class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('civil_status', 'occupation', 'place_of_residence', 'cellphone', 'level_of_school',)
+        fields = ('civil_status', 'occupation', 'place_of_residence', 'level_of_school', 'cellphone')
         widgets = {
             'civil_status': forms.Select(choices=Profile.CIVIL_STATUS_CHOICES),
             'level_of_school': forms.Select(choices=Profile.SCHOOL_LEVEL_CHOICES),
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
-        for field in self.fields:
-            self.fields[field].widget.attrs.update({'class': 'form-control'})
+    #     for field in self.fields:
+    #         self.fields[field].widget.attrs.update({'class': 'form-control'})
