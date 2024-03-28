@@ -22,17 +22,17 @@
           height="400px"
             width="300px"
             style='border-radius:50px'
-            src={% static "Jaime.png" %} 
+            src="{{about.photo1.url}}"
                   class="img-thumbnail round"
             alt="Responsive image"
           />
         </div>
         <div class="col-sm text-center" >
           <h3 class="m-1">
-            Jaime Cornejo:
+            {{about.person1_name}}
           </h3>
           <p class="m-3">
-             Psicólogo especializado en terapia cognitivo conductual, con amplía experiencia en evaluación psicológica
+            {{about.person1_description}}
           </p>
         </div>
     
@@ -47,11 +47,11 @@
 
         <div class="col-sm text-center">
           <h3 class="m-1">
-            María Sánchez
+            {{about.person2_name}}
 
           </h3>
           <p class="m-3">
-             Psicóloga especializada en evaluación psicológica, psicometría y entrevista profunda y por competencia.   </p>
+            {{about.person2_description}}
         </div>
         <div class="col-sm text-center align-content-center justify-content-center">
           <img
@@ -59,7 +59,7 @@
             width="300px"
           
             style='border-radius:50px' 
-            src={% static "Cony.jpg" %}
+            src="{{about.photo2.url}}"
             class="img-thumbnail round"
             alt="Responsive image"
           />
@@ -81,7 +81,7 @@
              height="500px"
              width="350px"
              style='border-radius:50px' 
-             src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAMFBMVEX////f39/d3d38/Pzh4eHs7Ozy8vL4+Pj19fXq6urk5OTv7+/m5ubr6+v29/bn6Of+ydA3AAAEWElEQVR4nO2d2XLDIAxFbcDGW5r//9vGbdM2xU4EKha+6Dx0pm/kjJBYDDSNoiiKoiiKoiiKoiiKoiiKoiiKoiiKohyOtbbv/e2vlW5JGdh5HifTrhjjxrnz0i2Sxi/OfAr54vafc3Nfrxi7tA9CfomZbn1JunkSeLcl5FvMch2kW3g4/WaMPITLMtcVLM+j5Jteup1HspCU3LpQPfl2eNVzfqzM0m09igvZSWuulWQVspFViqtAivfXGCdt6+CTymDoHecuBTxShlghFUiZUpxgS6FX4QegS3Jkev0Bd0jr08JkjRTY3pPupB2l254L4jxnE9RRSlrV+QQ1zXKcOOnG5yGxEn9iMFfeZpYTzHLM6TqonYcTJqgDfJYSTCdenQR0vL7TIhYeVtkBnRxznXTSPyADI0sJpBNL2/yrywkzxaoTdaJOEp0g1mLeFBBzzHbhKYEc2zPHbJBOmPMdSCc9S0nbSrc/C6yBLGIpbphrSqDrsaxJIKgT1l4G6kYgZ9Q2STc+D6zVAgfZd+zE6juQ8x3uGjXiNyjMsb06USc01EkQJoifb3FzLGCYcONkkW5/Dnh76KDfKWmYhLDC5E269XmION8VMCFm2Ia3VnCVbnwmOPNiVCeMagy6GnvDJocJ4lzni6SjbyuwYdKk74/ihkmTuPGFOji5Y8foRIt/bUHsdyj4Z66b2K0v0L2uP8Sto6gTdaJO7kSW4xpSbOQ6ShVlJ7LwgO6d/+XlTWQPcSLd2mOIWqyuIsU2UZ0HdLk+hHhn3Qd1pNgmIlCqCZOIu2Fgl2FDqHEC+W3SDguxGuMuTYeQnWichNQyOmnolwhBnsXYgZpja3LSqZMA8m66dEMPhLwfKN3QAyHPjKUbeiDqJITqpKYcS90LVCcb1LNUQHZS0xyQHCeI39jvQN72qmMXsFkPwVGVrKsFVaTZuE9CjevxrfjYE7XGXaCt2Jm8nPTbihlRrdjZbT/iRbACuZfuB+d4h5qmAertM+vH+LdDwmAx04BiZeiYEfLby4hQnIfkJLJj5exHvvzMvOVx04q7nDfh2vkfssi2lus5rdguQ4z8WFnOt47g+/9LrDtWxnNZseP/JtYdK9N5rLztPDqbxcopSnOfMqVJZ+qKtzLwbghKwExFrybYjnshapoVN5Vamm32UvOEIntQ3uHIa8orzf0sGCNfUsy1pBXtW6eRNvKBKeVmu7T1xEyYpYQXj+U7zV+k063l3hyVAel3oDn3vGREUgr7HrpMCEYK962UbAjuM8ffPXAUcgc6RGY3NKQ6D+Pt3dyYizoJkDpvyruIPC9STjhvNOdGqhqXWolXhKpxsaOTFXUSIuTkTfp3P0PISdRdDEejTkLUSYg62UDms/SyncgMZAtdY7sjMpAteWgvNbiX/tXPUScbSGyrFz20b2XOzZXuRGKAok7O50TkPpmynYjcsZN8MfsxiJzDLXD3/AGJowqlO5EYtHXGlQzjeZp3TSc+LoSs340AAAAASUVORK5CYII='
+             src = "{{about.photo3.url}}"
               class="img-thumbnail "
              alt="Responsive image"
            />
@@ -90,11 +90,11 @@
 
         <div class="col-sm  text-center">
           <h3 class="m-1">
-            SymmArts Hub
+            {{about.person3_name}}
 
           </h3>
           <p class="m-3">
-            Organización no lucrativa originaria de Montreal, Canadá con el propósito de unir comunidades internacionales y promover la salud, el arte y el mundo digital.
+            {{about.person3_description}}
           </p>
         </div>
 

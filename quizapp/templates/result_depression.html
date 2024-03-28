@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="text-center my-2"><h2>Resultados del test de Depresión </h2></div>
+<div class="text-center my-2"><h2>{{depression.title}}</h2></div>
     <div class="container">
         <div class="row flex flex-wrap-reverse">
 
@@ -27,7 +27,7 @@
             height="450px"
             width="300px"
             style='border-radius:30px;'
-              src="{% static "result_depression.jpg" %}"
+              src="{{depression.photo.url}}"
               class="img-fluid"
               alt="Responsive image"
             />
@@ -39,22 +39,22 @@
 
       <div  class="row my-3 text-center align-content-center">
         <div class="col-sm">
-          <iframe width="400"   style='border-radius:30px;' height="225" src="https://www.youtube.com/embed/Ou9wUSrOPWI">
+          <iframe width="400"   style='border-radius:30px;' height="225" src="{{depression.link1}}">
           </iframe>
           
         </div>
-        <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/sH97zfmlXVk">
+        <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{depression.link2}}">
         </iframe>
         </div>
      
         </div>
         <div class="row text-center align-content-center my-2">
           <div class="col-sm">
-            <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/BatItvkKCWQ">
+            <iframe style='border-radius:30px;' width="400" height="225" src="{{depression.link3}}">
             </iframe>
             
           </div>
-          <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/wWUKQSbMQCU">
+          <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{depression.link4}}">
           </iframe>
           </div>
        

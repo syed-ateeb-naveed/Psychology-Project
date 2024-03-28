@@ -9,7 +9,7 @@
     </div>
 <div>
     <div class=" text-center py-5"  >
-        <div class="jumbotron py-6  jumbotron-image  shadow text-center justify-content-center align-content-center" style="background-image: url({% static 'enduser.JPG' %});
+        <div class="jumbotron py-6  jumbotron-image  shadow text-center justify-content-center align-content-center" style="background-image: url({{enduser.photo.url}});
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
@@ -18,7 +18,7 @@
           <p class='py-3'></p>
 
           <p class="py-5">
-            Revisa los resultados de tus tests anteriores. Una vez que hayas tomado un test, puedes volver a tomarlo después de 5 meses.
+            {{enduser.text}}
           </p>
           <img
           src="{% static 'icon.png' %}"

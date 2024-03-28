@@ -22,10 +22,10 @@
 
           <div class="col-sm">
             <h2 class="m-1">
-                Escala de Evaluación de Ansiedad General (EEAG)
+               {{anxiety.title}}
             </h2>
             <p class="m-3">
-                La EEAG es una herramienta de autoevaluación diseñada para medir la frecuencia y severidad de los síntomas relacionados con la ansiedad durante la última semana.
+              {{anxiety.message}}
             </p>
             
           </div>
@@ -37,14 +37,12 @@
             <h5>Instrucciones:
             </h5>
           <div class="">
-           <p>Por favor, indica en qué medida has experimentado los siguientes síntomas en la última semana, incluyendo hoy. Utiliza la siguiente escala para cada ítem:</p>
+           <p>{{anxiety.Instruction_Text}}</p>
            <ul>
-            <li>No lo experimenté en absoluto</li>
-            <li>Lo experimenté de manera leve o infrecuente
-                
-                </li>
-            <li>Lo experimenté de manera moderada u ocasional</li>
-            <li>Lo experimenté de manera severa o frecuente</li>
+            <li>{{anxiety.Instruction_option1}}</li>
+            <li>{{anxiety.Instruction_option2}}</li>
+            <li>{{anxiety.Instruction_option3}}</li>
+            <li>{{anxiety.Instruction_option4}}</li>
           </ul>  
           <div class="text-center align-content-center">
             <a class="btn pink my-4 " href="/quiz/1" role="button">
@@ -59,18 +57,18 @@
         <div class='py-5'>
           <div class="row text-center align-content-center">
            
-            <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/V1Bv1I4HsGs">
+            <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{anxiety.link1}}">
             </iframe>
             </div>
          
             </div>
             <div class="row text-center align-content-center my-2">
               <div class="col-sm">
-                <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/IQFlb97IIik">
+                <iframe style='border-radius:30px;' width="400" height="225" src="{{anxiety.link2}}">
                 </iframe>
               </div>
               <div class="col-sm">
-              <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/a1td6mA3nVA">
+              <iframe style='border-radius:30px;' width="400" height="225" src="{{anxiety.link3}}">
               </iframe>
               </div>
            

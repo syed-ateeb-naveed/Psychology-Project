@@ -19,11 +19,10 @@
 
           <div class="col-sm">
             <h3 class="m-1">
-                Inventario de Intereses Vocacionales y Profesionales (IIVP)
+                {{oriention.title}}
             </h3>
             <p class="m-3">
-                El IIVP es una herramienta de autoevaluación diseñada para ayudar a los individuos a explorar sus intereses y preferencias vocacionales.</p>
-            
+              {{oriention.message}}
           </div>
       
           
@@ -33,20 +32,13 @@
             <h5>Instrucciones:
             </h5>
           <div class="">
-           <p>
-            A continuación, encontrarás una serie de actividades, tareas y campos de estudio. Por favor, indica tu nivel de interés en cada uno de ellos, utilizando la siguiente escala:</p>
-           <ul>
-            <li>Ningún interés
-                
-               </li>
-            <li>Poco interés
-                
-                
-                </li>
-            <li>Interés moderado
-               </li>
-            <li> Alto interés</li>
-          </ul>  
+            <p>{{oriention.Instruction_Text}}</p>
+            <ul>
+              <li>{{oriention.Instruction_option1}}</li>
+              <li>{{oriention.Instruction_option2}}</li>
+              <li>{{oriention.Instruction_option3}}</li>
+              <li>{{oriention.Instruction_option4}}</li>
+            </ul> 
           <div class="text-center align-content-center">
             <a class="btn pink my-4 " href="/quiz/4" role="button">
               Comenzar test</a>          </div>

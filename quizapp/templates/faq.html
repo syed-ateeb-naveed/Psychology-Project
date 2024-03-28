@@ -4,49 +4,19 @@
 
     <div class="text-center align-items-center">
       <h2 class="my-2">
-        Preguntas más Frecuentes (FAQ)
+        {{faq.title}} 
     </h2>
     </div>
 <div>
-    <div class="container text-center py-2" >
-        <div class=" justify-content-center align-content-center" style=" text-align: justify;
-        text-justify: inter-word;">
-          
-          <p class="" style=" text-align: justify;
-          text-justify: inter-word;">
-            1. ¿Cómo puedo saber si necesito realizar los tests de ansiedad o depresión?
-
-           </p>  
-           <p>Respuesta: Los tests de ansiedad y depresión son herramientas de autoevaluación útiles para identificar posibles síntomas relacionados con estos trastornos. Si te sientes constantemente preocupado, triste, desmotivado, o experimentas cambios significativos en tu estado de ánimo y comportamiento, podría ser útil realizar estos tests. Sin embargo, es importante recordar que estos tests no reemplazan una evaluación profesional y son solo el primer paso en el camino hacia el entendimiento y la ayuda.
-
-            </p> 
-            <p>2. ¿Qué tipo de información obtendré de los tests de autoestima y orientación vocacional?
-            
-                </p>
-                <p>Respuesta: Los tests de autoestima pueden ayudarte a entender mejor cómo te percibes a ti mismo, incluyendo tus sentimientos de valor y competencia. Los de orientación vocacional, por otro lado, están diseñados para ofrecer insights sobre tus intereses, habilidades y preferencias, lo que puede ser útil para tomar decisiones relacionadas con tu carrera o educación. Estos tests proporcionan una guía, pero sus resultados deben ser considerados como una parte de un proceso más amplio de autoconocimiento y toma de decisiones.
-                
-                    </p>
-                    <p>
-                        3. ¿Son confidenciales los resultados de los tests y la información que comparto en ellos?
-                    
-                        
-                    </p>
-                    <p>Respuesta: La confidencialidad es un aspecto crucial en la psicología. En nuestra plataforma, nos aseguramos de que los resultados de los tests y cualquier información que compartas sean tratados con la máxima privacidad. Esta información no se comparte con terceros sin tu consentimiento explícito. Sin embargo, siempre es recomendable leer la política de privacidad para entender completamente cómo se manejan tus datos.
-                        
-                        </p>
-                        <p>
-                            4. ¿Los formatos para consultorio psicológico tienen costo?
-                          
-                        </p>
-                        <p>
-                            Respuesta: No, los formatos no tienen costo y pueden ser descargados las veces que lo requieras.
-                            
-                            </p>
-                            <p>5. ¿Qué tipo de asistencia puedo esperar del chatbot psicoterapéutico y cómo puedo comenzar a interactuar con él?
-                            
-                                  </p>
-                                  <p class="ww" >Respuesta: MiConsejeroBot de Aprendamos Psicología, está entrenado para ofrecer apoyo inicial, responder preguntas generales sobre la salud mental y guiarte a través de recursos útiles. No reemplaza la terapia con un profesional, pero puede ser un primer paso accesible para buscar ayuda. Para comenzar a interactuar, simplemente inicia una conversación a través de la plataforma y el chatbot te guiará a través de las opciones disponibles y responderá a todas tus preguntas. Para saber cómo funciona, dirígete a la página "¿Cómo funciona?"
-                                </p>
+    <div class="container  py-2" >
+        <div  style=" text-align: left;">
+          <ul class="no-bullets" style="
+              list-style-type: none;
+              padding-left: 0;">
+            {% for line in message_lines %}
+            <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
              
           </div>
     

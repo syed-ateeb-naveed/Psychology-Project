@@ -7,21 +7,15 @@
 {% comment %} <iframe width="928" height="522" src="https://www.youtube.com/embed/SSaZqP1vdjY" title="Advantages of Cognitive Behavioral Therapy over other currents" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> {% endcomment %}
 <div class="text-center align-items-center">
       <h2 class="my-2">
-        ¿Cómo te sientes hoy?
-    </h2>
+          {{feel.title}}
+      </h2>
     </div>
 <div>
     <div class="container py-5">
         <div class=" text-center  align-content-center" >
           
           <p class="mb-4">
-            ¡Bienvenido a nuestra sección de Tests Psicológicos!</p><p>
-
-            Porque a veces es divertido, a veces es revelador, y siempre es un viaje hacia el autoconocimiento. Prepárate para explorar diferentes facetas de tu mente y personalidad. Elige un test, sumérgete en las preguntas y descubre más sobre ti mismo.
-        </p><p>
-            ¿Quieres entender mejor tu estado de ánimo? ¿O tal vez estás buscando un destello de inspiración vocacional? Sea cual sea tu objetivo, nuestros tests están aquí para ayudarte a descubrir más sobre ti de una manera amena y esclarecedora.
-          </p>
-          <p>Selecciona un test y comencemos este viaje juntos hacia un mayor autoentendimiento:</p>
+            {{feel.message}}</p>
           <div class="d-flex mx-5 flex-column">
             <!-- image YGI 3 PATI
              -->
@@ -52,22 +46,22 @@
     
 <div class="row text-center align-content-center">
   <div class="col-sm">
-    <iframe width="400"   style='border-radius:30px;' height="225" src="https://www.youtube.com/embed/iASX6cu4GaQ">
+    <iframe width="400"   style='border-radius:30px;' height="225" src="{{feel.link1}}">
     </iframe>
     
   </div>
-  <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/uvYep7c0Wa8">
+  <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{feel.link2}}">
   </iframe>
   </div>
 
   </div>
   <div class="row text-center align-content-center my-2">
     <div class="col-sm">
-      <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/wBJzh3VdiF0">
+      <iframe style='border-radius:30px;' width="400" height="225" src="{{feel.link3}}">
       </iframe>
       
     </div>
-    <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/SSaZqP1vdjY">
+    <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{feel.link4}}">
     </iframe>
     </div>
  

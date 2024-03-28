@@ -2,14 +2,10 @@
 {% block content %}
 {% load static %}
 
-    <h1 class="text-center" id="uppertext1">Test de Autoestima</h1>
+    <h1 class="text-center" id="uppertext1">{{category.title}}</h1>
     <div class="container">
             <div class="col-12" id="uppertext2" >
-                <p>Este test tiene por objeto evaluar el sentimiento de satisfacción que la persona tiene de sí misma.
-                </p>
-                <p>No te preocupes, nadie puede ver tus resultados, así que
-                    siéntete con la libertad de responder con sinceridad.
-                    Comenzamos.
+                <p>{{category.message}}
                 </p>
             </div>
 
@@ -56,7 +52,7 @@
             <div class="modal-body text-center">
                 <b>!Muchas gracias por tomarte el tiempo de responder el test! </b>
                 <p>
-                    Enseguida te mostramos tus resultados. Es importante mencionar que esta escala debe ser utilizada como una herramienta de autoevaluación y no como un sustituto de una evaluación profesional. En caso de puntuaciones altas o preocupaciones sobre la ansiedad, se recomienda buscar la opinión de un profesional de la salud mental.
+                    {{category.disclaimer}}
                 </p>
             </div>
             <div class="modal-footer d-grid gap-2 mx-auto ">

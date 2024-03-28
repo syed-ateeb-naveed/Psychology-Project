@@ -4,8 +4,7 @@
 
     <div class="text-center my-2">
       <h2>
-        Resultados del test de<br />
-        Orientación Vocacional
+        {{oriention.title}}
       </h2>
     </div>
     <div class="container">
@@ -17,7 +16,7 @@
             height="450px"
             width="300px"
             style='border-radius:30px;'
-            src="{% static "result_oriention.jpg" %}"
+            src="{{oriention.photo.url}}"
             class="img-fluid"
             alt="Responsive image"
           />

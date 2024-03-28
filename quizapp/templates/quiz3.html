@@ -2,14 +2,11 @@
 {% block content %}
 {% load static %}
 
-    <h1 class="text-center" id="uppertext1">Test de Orientación Vocacional</h1>
+    <h1 class="text-center" id="uppertext1">{{category.title}}</h1>
     <div class="container">
             <div class="col-12" id="uppertext2" >
-                <p>Categorías e Ítems del IIVP.
-                </p>
-                <p>No te preocupes, nadie puede ver tus resultados, así que
-                    siéntete con la libertad de responder con sinceridad.
-                    Comenzamos.
+                <p>
+                    {{category.message}}
                 </p>
             </div>
 
@@ -65,7 +62,7 @@
             <div class="modal-body text-center">
                 <b>!Muchas gracias por tomarte el tiempo de responder el test! </b>
                 <p>
-                    Enseguida te mostramos tus resultados. Es importante mencionar que esta herramienta debe utilizarse como una guía inicial para la exploración de intereses, y no como un diagnóstico definitivo de aptitudes o preferencias vocacionales. Es recomendable consultar con un orientador vocacional o un psicólogo especializado para una evaluación más detallada y personalizada.
+                    {{category.disclaimer}}
                 </p>
             </div>
             <div class="modal-footer d-grid gap-2 mx-auto ">

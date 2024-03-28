@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Category, Question, Choice,Result,Questionwithparts,Partsofquestion
+from .models import *
 from django.http import HttpResponse
 from .forms import RegisterUserForm, ProfileForm
 from django.db.models import Prefetch
@@ -112,31 +112,30 @@ def register_user(request):
 
 def home_page(request):
 
-    return render(request, 'home.html', {})
-
+    home_objects = Home_page.objects.all()
+    return render(request, 'home.html', {'home': home_objects.first()})
 def about_page(request):
 
     return render(request, 'about.html', {})
 
-def faq_page(request):
-
-    return render(request, 'faq.html', {})
 
 
-def oriention(request):
+
+def Orientación(request):
     if request.user.is_authenticated:
         user_id = User.objects.get(id=request.user.id)
         category_id=4
         chk=take_quiz(request,user_id,category_id)
         if chk != None:
             return chk    
-    
-    return render(request, 'oriention.html', {})
+    oriention_objects = oriention.objects.all()
+
+    return render(request, 'oriention.html', {'oriention':oriention_objects.first()})
 
 
 def about_us(request):
-
-    return render(request, 'about_us.html', {})
+    about_obj=about_us_page.objects.all()
+    return render(request, 'about_us.html', {'about':about_obj.first()})
 def anxiety(request):
     if request.user.is_authenticated:
         user_id = User.objects.get(id=request.user.id)
@@ -144,8 +143,8 @@ def anxiety(request):
         chk=take_quiz(request,user_id,category_id)
         if chk != None:
             return chk
-      
-    return render(request, 'anxiety.html', {})
+    anxiety_objects = Anxiety.objects.all()
+    return render(request, 'anxiety.html', {'anxiety':anxiety_objects.first()})
 def autostima(request):
     if request.user.is_authenticated:
         user_id = User.objects.get(id=request.user.id)
@@ -153,7 +152,9 @@ def autostima(request):
         chk=take_quiz(request,user_id,category_id)
         if chk != None:
             return chk    
-    return render(request, 'autostima.html', {})
+    autosestima_objects = Autostima.objects.all()
+
+    return render(request, 'autostima.html', {'autostima':autosestima_objects.first()})
 def contact_us(request):
 
     return render(request, 'contact_us.html', {})
@@ -164,41 +165,51 @@ def depression(request):
         chk=take_quiz(request,user_id,category_id)
         if chk != None:
             return chk    
-    return render(request, 'depression.html', {})
+    depression_objects = Depression.objects.all()
+
+    return render(request, 'depression.html', {'depression':depression_objects.first()})
 def enduser(request):
-
-    return render(request, 'enduser.html', {})
-def faq(request):
-
-    return render(request, 'faq.html', {})
+    end_obj=enduser_page.objects.all()
+    print(end_obj)
+    return render(request, 'enduser.html', {'enduser':end_obj.first()})
+def faqs(request):
+    faq_obj = faq.objects.all()
+    first_faq_obj = faq_obj.first()
+    if first_faq_obj:
+        message_lines = first_faq_obj.message.split('\n')
+    return render(request, 'faq.html', {'faq': first_faq_obj, 'message_lines': message_lines})
 def forms(request):
 
     return render(request, 'forms.html', {})
 def function(request):
+    function_obj = how_does_it_work_page.objects.all()
 
-    return render(request, 'function.html', {})
+    return render(request, 'function.html', {'function': function_obj.first()})
 def generate_new_password(request):
 
     return render(request, 'generate_new_password.html', {})
 def how_do_you_feel(request):
-
-    return render(request, 'how_do_you_feel.html', {})
+    obj = how_do_you_feel_page.objects.all()
+    print(obj)
+    return render(request, 'how_do_you_feel.html', {'feel':obj.first()})
 def privacy_policy(request):
 
     return render(request, 'privacy_policy.html', {})
 def result_anxiety(request):
-
-    return render(request, 'result_anxiety.html', {})
+    anx_obj=result_anxiety_page.objects.all()
+    return render(request, 'result_anxiety.html', {'anxiety':anx_obj.first()})
 def result_depression(request):
+    depression_obj=result_depression_page.objects.all()
 
-    return render(request, 'result_depression.html', {})
+    return render(request, 'result_depression.html', {'depression':depression_obj.first()})
 def result_oriention(request):
+    ori_obj=result_oriention_page.objects.all()
 
-    return render(request, 'result_oriention.html', {})
+    return render(request, 'result_oriention.html', {'oriention':ori_obj.first()})
 
 def result_autostima(request):
-
-    return render(request, 'result_autostima.html', {})
+    autostima_obj=result_autostima_page.objects.all()
+    return render(request, 'result_autostima.html', {'autostima':autostima_obj.first()})
 
 def  termscondition(request):
 
@@ -206,23 +217,31 @@ def  termscondition(request):
 def quiz_view(request, category_id):
 
     if category_id==1 or category_id==2 :
-        
+        if category_id==1:
+            cat_obj=Anxiety_quiz_page.objects.all()
+        else:
+            cat_obj=Depression_quiz_page.objects.all()
+
         questions = Question.objects.filter(category_id=category_id)
         choices=Choice.objects.filter(category_id=category_id)
-        return render(request, 'quiz.html', {'questions': questions,"choices":choices,"category_id":category_id})
+        return render(request, 'quiz.html', {'questions': questions,"choices":choices,"category_id":category_id,'category':cat_obj.first()})
     elif category_id==3 :
+        cat_obj=Autostima_quiz_page.objects.all()
+
         questions = Question.objects.filter(category_id=category_id)
         choices1=Choice.objects.filter(category_id=category_id)
         choices2=Choice.objects.filter(category_id=5)
-        return render(request, 'quiz2.html', {'questions': questions,"choices1":choices1,"choices2":choices2,"category_id":category_id})
+        return render(request, 'quiz2.html', {'questions': questions,"choices1":choices1,"choices2":choices2,"category_id":category_id,'category':cat_obj.first()})
 
     elif category_id==4 :
+        cat_obj=Oriention_quiz_page.objects.all()
+
         questions = Questionwithparts.objects.filter(category_id=category_id)
         parts = Partsofquestion.objects.filter(question__in=questions)
         parts_prefetched = Prefetch('partsofquestion_set', queryset=parts, to_attr='parts')
         questions = questions.prefetch_related(parts_prefetched)
         choices=Choice.objects.filter(category_id=category_id)
-        return render(request, 'quiz3.html', {'questions': questions,"choices":choices,"category_id":category_id})
+        return render(request, 'quiz3.html', {'questions': questions,"choices":choices,"category_id":category_id,'category':cat_obj.first()})
 
 def process_response(request):
 
@@ -240,7 +259,8 @@ def process_response(request):
             else:
                 mental_status='Ansiedad severa: Las personas con puntuaciones en el rango severo pueden presentar síntomas como preocupaciones y miedos extremos, pánico, dificultad para respirar, mareos, temblores, y un estado constante de hiperactividad del sistema nervioso. Se recomienda que las personas con una puntuación severa busquen la evaluación y el tratamiento de un profesional de la salud mental, ya que pueden beneficiarse de terapias específicas, apoyo y posiblemente medicación para manejar sus síntomas.'
             result(request,mental_status,category_id)
-            return render(request, 'result_anxiety.html', {'mental_status':mental_status})
+            anx_obj=result_anxiety_page.objects.all()
+            return render(request, 'result_anxiety.html', {'mental_status':mental_status,'anxiety':anx_obj.first()})
         elif category_id==2:
             if total_points<=10:
                 mental_status='Depresión mínima o nula: Una puntuación en este rango sugiere que la persona presenta muy pocos o ningún síntoma de depresión significativo. Esto puede interpretarse como una indicación de que actualmente no se está experimentando depresión clínica.'
@@ -251,8 +271,8 @@ def process_response(request):
             else:
                 mental_status='Depresión severa: Los individuos con una puntuación en este rango suelen experimentar una amplia gama de síntomas graves de depresión, posibles pensamientos de autolesión o suicidio, y otros síntomas que impactan considerablemente en su bienestar y capacidad para realizar actividades diarias.'
             result(request,mental_status,category_id)
-
-            return render(request, 'result_depression.html', {'mental_status':mental_status})       
+            depression_obj=result_depression_page.objects.all()
+            return render(request, 'result_depression.html', {'mental_status':mental_status,'depression':depression_obj.first()})       
         elif category_id==3:
             if 30<=total_points<=40:
                 mental_status='Autoestima elevada. Esta puntuación refleja una actitud general de aceptación y satisfacción con uno mismo, y sugiere que la persona se siente competente para enfrentar los desafíos de la vida. Las personas con autoestima elevada suelen mostrar resiliencia frente a las adversidades y tienden a tener una perspectiva optimista de sus capacidades y su valía personal.'
@@ -261,8 +281,8 @@ def process_response(request):
             else:
                 mental_status='Autoestima baja. Este resultado indica que la persona tiene una percepción negativa de sí misma. Esto se manifiesta en una tendencia a ver sus propias capacidades y valor personal de manera crítica y posiblemente poco realista. La persona puede sentir que no cumple con sus propias expectativas o las de otros, y puede tener dificultades para reconocer sus logros y cualidades positivas. '
             result(request,mental_status,category_id)
-
-            return render(request, 'result_autostima.html', {'mental_status':mental_status})
+            autostima_obj=result_autostima_page.objects.all()
+            return render(request, 'result_autostima.html', {'mental_status':mental_status,'autostima':autostima_obj.first()})
         elif category_id==4:
             Categories=[]
 
@@ -310,7 +330,8 @@ def process_response(request):
             
             mental_status=cat1+" & "+cat2
             result(request,mental_status,category_id)
-            return render(request, 'result_oriention.html', {'cat1':cat1,'cat2':cat2})            
+            ori_obj=result_oriention_page.objects.all()
+            return render(request, 'result_oriention.html', {'cat1':cat1,'cat2':cat2,'oriention':ori_obj.first()})            
 
         
     
@@ -373,7 +394,8 @@ def take_quiz(request,user_id,category_id):
             eligible_date = test_date + timedelta(days=180)
             error_message = f"You can only take the quiz on or after {eligible_date.strftime('%d-%m-%Y')}"
             messages.error(request, error_message)
-            return render(request, 'enduser.html', {'cat_id': category_id})
+            end_obj=enduser_page.objects.all()
+            return render(request, 'enduser.html', {'cat_id': category_id,'enduser':end_obj.first()})
         else:
             # Allow the user to take the quiz
             empty=''

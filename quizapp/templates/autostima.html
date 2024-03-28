@@ -11,7 +11,7 @@
 
             <div class="col-sm  text-center align-content-center justify-content-center">
             
-                <h4 class="m-1">Escala de Autoestima de Rosemberg</h4>
+                <h4 class="m-1">{{autostima.title}}</h4>
                 <img
                 height="300px"
                 width="380px"
@@ -21,7 +21,8 @@
                   alt="Responsive image"
                 />
                 <p class="m-3">
-                    La Escala de Autoestima de Rosenberg es un instrumento de autoevaluación utilizado para medir la autoestima. La escala mide principalmente sentimientos de respeto y aceptación hacia uno mismo, proporcionando una indicación general de la autoestima del individuo.</p>
+                  {{autostima.message}}    
+                </p>
                 
                 
               </div>
@@ -35,17 +36,13 @@
             <h5>Instrucciones:
             </h5>
           <div class="">
-           <p>Por favor, indica en qué medida has experimentado los siguientes síntomas en la última semana, incluyendo hoy. Utiliza la siguiente escala para cada ítem:
-        </p>
-           <ul>
-            <li>No lo experimenté en absoluto
-               </li>
-            <li>Lo experimenté de manera leve o infrecuente
-                
-                </li>
-            <li>Lo experimenté de manera moderada u ocasional</li>
-            <li>Lo experimenté de manera severa o frecuente</li>
-          </ul>  
+            <p>{{autostima.Instruction_Text}}</p>
+            <ul>
+             <li>{{autostima.Instruction_option1}}</li>
+             <li>{{autostima.Instruction_option2}}</li>
+             <li>{{autostima.Instruction_option3}}</li>
+             <li>{{autostima.Instruction_option4}}</li>
+           </ul> 
           <div class="text-center align-content-center">
             <a class="btn pink my-4 " href="/quiz/3" role="button">
               Comenzar test</a>          </div>
@@ -56,22 +53,22 @@
 
         <div class="row text-center align-content-center">
           <div class="col-sm">
-            <iframe width="400"   style='border-radius:30px;' height="225" src="https://www.youtube.com/embed/-j1fe-Wx-k4">
+            <iframe width="400"   style='border-radius:30px;' height="225" src="{{autostima.link1}}">
             </iframe>
             
           </div>
-          <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/hR4MYkaP9HU">
+          <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{autostima.link2}}">
           </iframe>
           </div>
        
           </div>
           <div class="row text-center align-content-center my-2">
             <div class="col-sm">
-              <iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/Fh8jMtyicGU">
+              <iframe style='border-radius:30px;' width="400" height="225" src="{{autostima.link3}}">
               </iframe>
               
             </div>
-            <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="https://www.youtube.com/embed/VgV0wC_cg74">
+            <div class="col-sm"><iframe style='border-radius:30px;' width="400" height="225" src="{{autostima.link4}}">
             </iframe>
             </div>
          

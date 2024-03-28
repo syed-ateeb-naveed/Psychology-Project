@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .views import quiz_view, process_response, chatbot, get_videos, CustomPasswordResetView, CustomPasswordResetConfirmView,display_result
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('auth/login', views.login_user, name='login'),
     path('auth/logout', views.logout_user, name='logout'),
@@ -12,8 +13,8 @@ urlpatterns = [
     # path('about/', views.about_page, name='about'),
     # path('faq/', views.faq_page, name='faq'),
     # path('forms/', views.forms_page, name='forms'),
-    path('quiz/<int:category_id>', quiz_view, name='quiz_view'),
-    path('quiz/process_response', process_response, name='process_response'),
+    path('quiz/<int:category_id>', quiz_view, name='quiz_view'), # type: ignore
+    path('quiz/process_response', process_response, name='process_response'), # type: ignore
     path('chatbot/', views.chatbot, name='quiz_results'),
     path('footer/',views.get_videos,name='footer'),
 
@@ -23,14 +24,14 @@ urlpatterns = [
     path('reset/<uidb64>/<token>', CustomPasswordResetConfirmView.as_view(template_name="reset_confirm.html"), name="password_reset_confirm"),
     # path('auth/reset_complete', CustomPasswordResetCompleteView.as_view(), name="password_reset_complete"),
     # pages
-    path('oriention/', views.oriention, name='oriention'),
+    path('oriention/', views.Orientación, name='oriention'), # type: ignore
     path('about/', views.about_us, name='about'),
-    path('anxiety/', views.anxiety, name='anxiety'),
-    path('autostima/', views.autostima, name='autostima'),
-    path('contact_us/', views.contact_us, name='contact_us'),
-    path('depression/', views.depression, name='depression'),
+    path('anxiety/', views.anxiety, name='anxiety'), # type: ignore
+    path('autostima/', views.autostima, name='autostima'), # type: ignore
+    path('contact_us/', views.contact_us, name='contact_us'), # type: ignore
+    path('depression/', views.depression, name='depression'), # type: ignore
     path('enduser/', views.enduser, name='enduser'),
-    path('faq/', views.faq, name='faq'),
+    path('faq/', views.faqs, name='faq'),
     path('forms/', views.forms, name='forms'),
     path('function/', views.function, name='function'),
     path('generate_new_password/', views.generate_new_password, name='generate_new_password'),
@@ -41,7 +42,7 @@ urlpatterns = [
     path('result_autostima/', views.result_autostima, name='result_autostima'),
     path('result_depression/', views.result_depression, name='result_depression'),
     path('result_oriention/', views.result_oriention, name='result_oriention'),
-    path('display_result/<int:cat_id>', views.display_result, name='display_result'),
+    path('display_result/<int:cat_id>', views.display_result, name='display_result'), # type: ignore
 
                 
 
@@ -50,3 +51,5 @@ urlpatterns = [
 
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

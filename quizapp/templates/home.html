@@ -7,20 +7,17 @@
 text-justify: inter-word;">
   <div class="row flex flex-wrap-reverse">
     <div class="col-sm my-2 text-center align-items-center justify-content-center">
-      <h1 class="my-2" style=''>
-        El único Bot Consejero personalizado que está aquí solo para ti
-      </h1>
+      <h1 class="my-2" >
+        {{ home.title }}      </h1>
       <p class="my-3 ">
-        Aprendamos Psicología en colaboración con Pulse Montreal, entrenamos a
-        MiConsejeroBot para que te escuche en momentos de inestabilidad
-        emocional. Es gratis.
+        {{ home.message }}
       </p>
       <a class="btn blue my-1 "  href='/function'>¿Cómo funciona?</a>
     </div>
 
     <div class="col-sm text-center">
       <img
-        src="{% static 'Main.JPG' %}"
+        src="{{ home.photo1.url }}"
         height='400px'
         width='400px'
         class="img-fluid"
@@ -94,7 +91,7 @@ text-justify: inter-word;">
     <div class="col-sm text-center">
       <img
         style='border-radius:30px;'
-        src="{% static 'main2.JPG' %}"
+        src="{{ home.photo2.url }}"
         height='400px'
         width='400px'
         class="img-fluid"
